@@ -114,7 +114,7 @@ class OrderController {
 		$chosen_shipping_methods = wc()->session->get( 'chosen_shipping_methods' );
 
 		$this->validate_coupons( $order );
-		$this->validate_email( $order );
+		$this->validate_primary_contact_info( $order );
 		$this->validate_selected_shipping_methods( $needs_shipping, $chosen_shipping_methods );
 		$this->validate_addresses( $order );
 	}
@@ -184,23 +184,48 @@ class OrderController {
 	}
 
 	/**
-	 * Validates the customer email. This is a required field.
+	 * Checks if the provided phone number is valid.
+	 *
+	 * @param string $phone Phone number to validate.
+	 * @return boolean is phone number valid.
+	 */
+	private function is_phone_number( $phone ) {
+		if ( ! preg_match( '/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/', $phone ) ) {
+			return false;
+		}
+		return true;
+	}
+	/**
+	 * Validates the customer contact info. This is a required field.
 	 *
 	 * @throws RouteException Exception if invalid data is detected.
 	 * @param \WC_Order $order Order object.
 	 */
-	protected function validate_email( \WC_Order $order ) {
+	protected function validate_primary_contact_info( \WC_Order $order ) {
 		$email = $order->get_billing_email();
+		$phone = $order->get_billing_phone();
 
-		if ( empty( $email ) ) {
+		if ( empty( $email ) && empty( $phone ) ) {
 			throw new RouteException(
-				'woocommerce_rest_missing_email_address',
-				__( 'A valid email address is required', 'woo-gutenberg-products-block' ),
+				'woocommerce_rest_missing_contact_info',
+				__( 'A valid email address or a phone number is required', 'woo-gutenberg-products-block' ),
 				400
 			);
 		}
 
-		if ( ! is_email( $email ) ) {
+		if ( ! empty( $phone ) && ! $this->is_phone_number( $phone ) ) {
+			throw new RouteException(
+				'woocommerce_rest_invalid_phone_number',
+				sprintf(
+					/* translators: %s provided phone number. */
+					__( 'The provided phone number (%s) is not valid—please provide a valid phone number', 'woo-gutenberg-products-block' ),
+					esc_html( $phone )
+				),
+				400
+			);
+		}
+
+		if ( ! empty( $email ) && ! is_email( $email ) ) {
 			throw new RouteException(
 				'woocommerce_rest_invalid_email_address',
 				sprintf(

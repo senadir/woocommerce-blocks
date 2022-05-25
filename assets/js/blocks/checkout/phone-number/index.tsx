@@ -9,12 +9,12 @@ import { ValidatedTextInput } from '@woocommerce/base-components/text-input';
  */
 const PhoneNumber = ( {
 	id = 'phone',
-	isRequired = false,
+	required = false,
 	value = '',
 	onChange,
 }: {
 	id?: string;
-	isRequired: boolean;
+	required: boolean;
 	value: string;
 	onChange: ( value: string ) => void;
 } ): JSX.Element => {
@@ -23,9 +23,9 @@ const PhoneNumber = ( {
 			id={ id }
 			type="tel"
 			autoComplete="tel"
-			required={ isRequired }
+			required={ required }
 			label={
-				isRequired
+				required
 					? __( 'Phone', 'woo-gutenberg-products-block' )
 					: __( 'Phone (optional)', 'woo-gutenberg-products-block' )
 			}

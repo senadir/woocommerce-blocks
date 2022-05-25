@@ -29,7 +29,7 @@ const FrontendBlock = ( {
 	className?: string;
 } ) => {
 	const { isProcessing: checkoutIsProcessing } = useCheckoutContext();
-	const { allowCreateAccount } = useCheckoutBlockContext();
+	const { allowCreateAccount, phoneAsPrimary } = useCheckoutBlockContext();
 
 	return (
 		<FormStep
@@ -44,7 +44,10 @@ const FrontendBlock = ( {
 			showStepNumber={ showStepNumber }
 			stepHeadingContent={ () => <LoginPrompt /> }
 		>
-			<Block allowCreateAccount={ allowCreateAccount } />
+			<Block
+				allowCreateAccount={ allowCreateAccount }
+				phoneAsPrimary={ phoneAsPrimary }
+			/>
 			{ children }
 		</FormStep>
 	);

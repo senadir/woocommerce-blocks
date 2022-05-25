@@ -31,10 +31,13 @@ const FrontendBlock = ( {
 	const { showShippingFields } = useCheckoutAddress();
 	const {
 		requireCompanyField,
-		requirePhoneField,
 		showApartmentField,
 		showCompanyField,
+		phoneAsPrimary,
+		requirePhoneField,
 		showPhoneField,
+		requireEmailField,
+		showEmailField,
 	} = useCheckoutBlockContext();
 
 	if ( ! showShippingFields ) {
@@ -59,6 +62,9 @@ const FrontendBlock = ( {
 				showApartmentField={ showApartmentField }
 				showCompanyField={ showCompanyField }
 				showPhoneField={ showPhoneField }
+				phoneAsPrimary={ phoneAsPrimary }
+				requireEmailField={ requireEmailField }
+				showEmailField={ showEmailField }
 			/>
 			{ children }
 		</FormStep>
