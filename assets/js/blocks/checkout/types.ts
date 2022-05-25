@@ -6,12 +6,15 @@ export type InnerBlockTemplate = [
 
 export interface Attributes extends Record< string, boolean | number > {
 	allowCreateAccount: boolean;
+	phoneAsPrimary: boolean;
 	hasDarkControls: boolean;
 	showCompanyField: boolean;
 	showApartmentField: boolean;
 	showPhoneField: boolean;
+	showEmailField: boolean;
 	requireCompanyField: boolean;
 	requirePhoneField: boolean;
+	requireEmailField: boolean;
 	// Deprecated.
 	showOrderNotes: boolean;
 	showPolicyLinks: boolean;

@@ -47,7 +47,10 @@ const FrontendBlock = ( {
 			showStepNumber={ showStepNumber }
 			stepHeadingContent={ () => <LoginPrompt /> }
 		>
-			<Block allowCreateAccount={ allowCreateAccount } />
+			<Block
+				allowCreateAccount={ allowCreateAccount }
+				phoneAsPrimary={ phoneAsPrimary }
+			/>
 			{ children }
 		</FormStep>
 	);

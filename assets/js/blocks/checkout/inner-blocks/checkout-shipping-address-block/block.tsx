@@ -4,6 +4,7 @@
 import { __ } from '@wordpress/i18n';
 import { useMemo, useEffect, Fragment, useState } from '@wordpress/element';
 import { AddressForm } from '@woocommerce/base-components/cart-checkout';
+import { ValidatedTextInput } from '@woocommerce/base-components/text-input';
 import {
 	useCheckoutAddress,
 	useStoreEvents,
@@ -26,15 +27,21 @@ import PhoneNumber from '../../phone-number';
 const Block = ( {
 	showCompanyField = false,
 	showApartmentField = false,
+	phoneAsPrimary = false,
 	showPhoneField = false,
-	requireCompanyField = false,
 	requirePhoneField = false,
+	showEmailField = false,
+	requireEmailField = false,
+	requireCompanyField = false,
 }: {
 	showCompanyField: boolean;
 	showApartmentField: boolean;
+	phoneAsPrimary: boolean;
 	showPhoneField: boolean;
-	requireCompanyField: boolean;
 	requirePhoneField: boolean;
+	showEmailField: boolean;
+	requireEmailField: boolean;
+	requireCompanyField: boolean;
 } ): JSX.Element => {
 	const {
 		defaultAddressFields,
@@ -42,6 +49,8 @@ const Block = ( {
 		setBillingAddress,
 		shippingAddress,
 		setShippingPhone,
+		setEmail,
+		billingData,
 		useShippingAsBilling,
 		setUseShippingAsBilling,
 	} = useCheckoutAddress();
@@ -54,10 +63,16 @@ const Block = ( {
 
 	// Clears data if fields are hidden.
 	useEffect( () => {
-		if ( ! showPhoneField ) {
+		if ( ! phoneAsPrimary && ! showPhoneField ) {
 			setShippingPhone( '' );
 		}
-	}, [ showPhoneField, setShippingPhone ] );
+	}, [ phoneAsPrimary, showPhoneField, setShippingPhone ] );
+
+	useEffect( () => {
+		if ( phoneAsPrimary && ! showEmailField ) {
+			setEmail( '' );
+		}
+	}, [ phoneAsPrimary, showEmailField, setEmail ] );
 
 	// Run this on first render to ensure addresses sync if needed, there is no need to re-run this when toggling the
 	// checkbox.
@@ -115,18 +130,46 @@ const Block = ( {
 					}
 					fieldConfig={ addressFieldsConfig }
 				/>
-				{ showPhoneField && (
-					<PhoneNumber
-						id="shipping-phone"
-						isRequired={ requirePhoneField }
-						value={ shippingAddress.phone }
-						onChange={ ( value ) => {
-							setShippingPhone( value );
-							dispatchCheckoutEvent( 'set-phone-number', {
-								step: 'shipping',
-							} );
-						} }
-					/>
+				{ phoneAsPrimary ? (
+					<>
+						{ showEmailField && (
+							<ValidatedTextInput
+								id="email"
+								type="email"
+								label={
+									requireEmailField
+										? __(
+												'Email',
+												'woo-gutenberg-products-block'
+										  )
+										: __(
+												'Email (optional)',
+												'woo-gutenberg-products-block'
+										  )
+								}
+								value={ billingData.email }
+								autoComplete="email"
+								onChange={ onChangeEmail }
+								required={ requireEmailField }
+							/>
+						) }
+					</>
+				) : (
+					<>
+						{ showPhoneField && (
+							<PhoneNumber
+								id="shipping-phone"
+								required={ requirePhoneField }
+								value={ shippingAddress.phone }
+								onChange={ ( value ) => {
+									setShippingPhone( value );
+									dispatchCheckoutEvent( 'set-phone-number', {
+										step: 'shipping',
+									} );
+								} }
+							/>
+						) }
+					</>
 				) }
 			</AddressFormWrapperComponent>
 			<CheckboxControl
