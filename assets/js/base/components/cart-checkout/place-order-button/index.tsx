@@ -4,8 +4,13 @@
 import { useCheckoutSubmit } from '@woocommerce/base-context/hooks';
 import { Icon, check } from '@wordpress/icons';
 import Button from '@woocommerce/base-components/button';
+import classNames from 'classnames';
 
-const PlaceOrderButton = (): JSX.Element => {
+const PlaceOrderButton = ( {
+	className,
+}: {
+	className: string;
+} ): JSX.Element => {
 	const {
 		submitButtonText,
 		onSubmit,
@@ -17,7 +22,10 @@ const PlaceOrderButton = (): JSX.Element => {
 
 	return (
 		<Button
-			className="wc-block-components-checkout-place-order-button"
+			className={ classNames(
+				'wc-block-components-checkout-place-order-button',
+				className
+			) }
 			onClick={ onSubmit }
 			disabled={
 				isCalculating ||
