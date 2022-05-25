@@ -70,8 +70,11 @@ const Checkout = ( {
 		showCompanyField,
 		requireCompanyField,
 		showApartmentField,
+		phoneAsPrimary,
 		showPhoneField,
 		requirePhoneField,
+		showEmailField,
+		requireEmailField,
 	} = attributes;
 
 	if ( ! cartIsLoading && cartItems.length === 0 ) {
@@ -89,7 +92,6 @@ const Checkout = ( {
 	) {
 		<LoginPrompt />;
 	}
-
 	return (
 		<CheckoutBlockContext.Provider
 			value={ {
@@ -97,8 +99,11 @@ const Checkout = ( {
 				showCompanyField,
 				requireCompanyField,
 				showApartmentField,
+				phoneAsPrimary,
 				showPhoneField,
 				requirePhoneField,
+				showEmailField,
+				requireEmailField,
 			} }
 		>
 			{ children }
