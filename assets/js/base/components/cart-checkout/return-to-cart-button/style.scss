@@ -10,5 +10,8 @@
 		position: absolute;
 		transform: translateY(-50%);
 		top: 50%;
+		.rtl & {
+			transform: translateY(-50%) scaleX(-1);
+		}
 	}
 }
