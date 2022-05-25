@@ -4,13 +4,15 @@
 import { __ } from '@wordpress/i18n';
 import { useMemo, useEffect, Fragment, useState } from '@wordpress/element';
 import { AddressForm } from '@woocommerce/base-components/cart-checkout';
-import { ValidatedTextInput } from '@woocommerce/base-components/text-input';
 import {
 	useCheckoutAddress,
 	useStoreEvents,
 	useEditorContext,
 } from '@woocommerce/base-context';
-import { CheckboxControl } from '@woocommerce/blocks-checkout';
+import {
+	CheckboxControl,
+	ValidatedTextInput,
+} from '@woocommerce/blocks-checkout';
 import Noninteractive from '@woocommerce/base-components/noninteractive';
 import type {
 	BillingAddress,
