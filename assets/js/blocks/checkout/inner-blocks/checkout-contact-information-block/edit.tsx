@@ -32,7 +32,7 @@ export const Edit = ( {
 	};
 	setAttributes: ( attributes: Record< string, unknown > ) => void;
 } ): JSX.Element => {
-	const { allowCreateAccount } = useCheckoutBlockContext();
+	const { allowCreateAccount, phoneAsPrimary } = useCheckoutBlockContext();
 	const { accountControls: Controls } = useCheckoutBlockControlsContext();
 	return (
 		<FormStepBlock
@@ -45,7 +45,10 @@ export const Edit = ( {
 		>
 			<Controls />
 			<Noninteractive>
-				<Block allowCreateAccount={ allowCreateAccount } />
+				<Block
+					allowCreateAccount={ allowCreateAccount }
+					phoneAsPrimary={ phoneAsPrimary }
+				/>
 			</Noninteractive>
 			<AdditionalFields block={ innerBlockAreas.CONTACT_INFORMATION } />
 		</FormStepBlock>

@@ -53,11 +53,14 @@ export const Edit = ( {
 } ): JSX.Element => {
 	const {
 		allowCreateAccount,
+		phoneAsPrimary,
 		showCompanyField,
 		requireCompanyField,
 		showApartmentField,
 		showPhoneField,
+		showEmailField,
 		requirePhoneField,
+		requireEmailField,
 		showOrderNotes,
 		showPolicyLinks,
 		showReturnToCart,
@@ -84,6 +87,18 @@ export const Edit = ( {
 					'woo-gutenberg-products-block'
 				) }
 			>
+				<ToggleControl
+					label={ __(
+						'Use phone number as primary contant info',
+						'woo-gutenberg-products-block'
+					) }
+					checked={ phoneAsPrimary }
+					onChange={ () =>
+						setAttributes( {
+							phoneAsPrimary: ! phoneAsPrimary,
+						} )
+					}
+				/>
 				<ToggleControl
 					label={ __(
 						'Allow shoppers to sign up for a user account during checkout',
@@ -138,23 +153,58 @@ export const Edit = ( {
 					checked={ showApartmentField }
 					onChange={ () => toggleAttribute( 'showApartmentField' ) }
 				/>
-				<ToggleControl
-					label={ __( 'Phone', 'woo-gutenberg-products-block' ) }
-					checked={ showPhoneField }
-					onChange={ () => toggleAttribute( 'showPhoneField' ) }
-				/>
-				{ showPhoneField && (
-					<CheckboxControl
-						label={ __(
-							'Require phone number?',
-							'woo-gutenberg-products-block'
+				{ phoneAsPrimary ? (
+					<>
+						<ToggleControl
+							label={ __(
+								'Email',
+								'woo-gutenberg-products-block'
+							) }
+							checked={ showEmailField }
+							onChange={ () =>
+								toggleAttribute( 'showEmailField' )
+							}
+						/>
+						{ showEmailField && (
+							<CheckboxControl
+								label={ __(
+									'Require email?',
+									'woo-gutenberg-products-block'
+								) }
+								checked={ requireEmailField }
+								onChange={ () =>
+									toggleAttribute( 'requireEmailField' )
+								}
+								className="components-base-control--nested"
+							/>
 						) }
-						checked={ requirePhoneField }
-						onChange={ () =>
-							toggleAttribute( 'requirePhoneField' )
-						}
-						className="components-base-control--nested"
-					/>
+					</>
+				) : (
+					<>
+						<ToggleControl
+							label={ __(
+								'Phone',
+								'woo-gutenberg-products-block'
+							) }
+							checked={ showPhoneField }
+							onChange={ () =>
+								toggleAttribute( 'showPhoneField' )
+							}
+						/>
+						{ showPhoneField && (
+							<CheckboxControl
+								label={ __(
+									'Require phone number?',
+									'woo-gutenberg-products-block'
+								) }
+								checked={ requirePhoneField }
+								onChange={ () =>
+									toggleAttribute( 'requirePhoneField' )
+								}
+								className="components-base-control--nested"
+							/>
+						) }
+					</>
 				) }
 			</PanelBody>
 			<CartCheckoutFeedbackPrompt />
@@ -192,6 +242,9 @@ export const Edit = ( {
 									showApartmentField,
 									showPhoneField,
 									requirePhoneField,
+									phoneAsPrimary,
+									showEmailField,
+									requireEmailField,
 									showOrderNotes,
 									showPolicyLinks,
 									showReturnToCart,

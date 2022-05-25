@@ -14,19 +14,30 @@ import { CheckboxControl } from '@woocommerce/blocks-checkout';
 /**
  * Internal dependencies
  */
+import PhoneNumber from '../../phone-number';
 
 const Block = ( {
 	allowCreateAccount,
+	phoneAsPrimary,
 }: {
 	allowCreateAccount: boolean;
+	phoneAsPrimary: boolean;
 } ): JSX.Element => {
-	const { customerId, shouldCreateAccount, setShouldCreateAccount } =
-		useCheckoutContext();
-	const { billingAddress, setEmail } = useCheckoutAddress();
+	const {
+		customerId,
+		shouldCreateAccount,
+		setShouldCreateAccount,
+	} = useCheckoutContext();
+	const { billingAddress, setEmail, setBillingPhone } = useCheckoutAddress();
 	const { dispatchCheckoutEvent } = useStoreEvents();
 
 	const onChangeEmail = ( value ) => {
 		setEmail( value );
+		dispatchCheckoutEvent( 'set-email-address' );
+	};
+
+	const onChangePhone = ( value ) => {
+		setBillingPhone( value );
 		dispatchCheckoutEvent( 'set-email-address' );
 	};
 
@@ -47,15 +58,28 @@ const Block = ( {
 
 	return (
 		<>
-			<ValidatedTextInput
-				id="email"
-				type="email"
-				label={ __( 'Email address', 'woo-gutenberg-products-block' ) }
-				value={ billingAddress.email }
-				autoComplete="email"
-				onChange={ onChangeEmail }
-				required={ true }
-			/>
+			{ phoneAsPrimary ? (
+				<PhoneNumber
+					id="phone"
+					required={ true }
+					value={ billingAddress.phone }
+					onChange={ onChangePhone }
+				/>
+			) : (
+				<ValidatedTextInput
+					id="email"
+					type="email"
+					label={ __(
+						'Email address',
+						'woo-gutenberg-products-block'
+					) }
+					value={ billingAddress.email }
+					autoComplete="email"
+					onChange={ onChangeEmail }
+					required={ true }
+				/>
+			) }
+
 			{ createAccountUI }
 		</>
 	);

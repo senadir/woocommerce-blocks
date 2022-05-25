@@ -28,6 +28,10 @@
 			"type": "boolean",
 			"default": false
 		},
+		"phoneAsPrimary": {
+			"type": "boolean",
+			"default": false
+		},
 		"showApartmentField": {
 			"type": "boolean",
 			"default": true
@@ -37,6 +41,14 @@
 			"default": true
 		},
 		"requirePhoneField": {
+			"type": "boolean",
+			"default": false
+		},
+		"showEmailField": {
+			"type": "boolean",
+			"default": true
+		},
+		"requireEmailField": {
 			"type": "boolean",
 			"default": false
 		}
