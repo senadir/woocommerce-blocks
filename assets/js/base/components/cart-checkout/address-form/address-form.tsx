@@ -93,6 +93,7 @@ const AddressForm = ( {
 	onChange,
 	type = 'shipping',
 	values,
+	children,
 }: AddressFormProps ): JSX.Element => {
 	const validationErrorId = 'shipping-missing-country';
 	const { setValidationErrors, clearValidationError } =
@@ -238,6 +239,7 @@ const AddressForm = ( {
 					/>
 				);
 			} ) }
+			{ children }
 		</div>
 	);
 };
