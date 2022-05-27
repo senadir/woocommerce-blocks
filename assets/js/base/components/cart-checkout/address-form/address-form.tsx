@@ -86,6 +86,7 @@ const AddressForm = ( {
 	onChange,
 	type = 'shipping',
 	values,
+	children,
 }: AddressFormProps ): JSX.Element => {
 	const { getValidationError, setValidationErrors, clearValidationError } =
 		useValidationContext();
@@ -232,6 +233,7 @@ const AddressForm = ( {
 					/>
 				);
 			} ) }
+			{ children }
 		</div>
 	);
 };
