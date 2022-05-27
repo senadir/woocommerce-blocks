@@ -33,6 +33,7 @@ const Block = ( {
 	showEmailField = false,
 	requireEmailField = false,
 	requireCompanyField = false,
+	children,
 }: {
 	showCompanyField: boolean;
 	showApartmentField: boolean;
@@ -129,48 +130,55 @@ const Block = ( {
 						) as ( keyof AddressFields )[]
 					}
 					fieldConfig={ addressFieldsConfig }
-				/>
-				{ phoneAsPrimary ? (
+				>
 					<>
-						{ showEmailField && (
-							<ValidatedTextInput
-								id="email"
-								type="email"
-								label={
-									requireEmailField
-										? __(
-												'Email',
-												'woo-gutenberg-products-block'
-										  )
-										: __(
-												'Email (optional)',
-												'woo-gutenberg-products-block'
-										  )
-								}
-								value={ billingData.email }
-								autoComplete="email"
-								onChange={ onChangeEmail }
-								required={ requireEmailField }
-							/>
+						{ phoneAsPrimary ? (
+							<>
+								{ showEmailField && (
+									<ValidatedTextInput
+										id="email"
+										type="email"
+										label={
+											requireEmailField
+												? __(
+														'Email',
+														'woo-gutenberg-products-block'
+												  )
+												: __(
+														'Email (optional)',
+														'woo-gutenberg-products-block'
+												  )
+										}
+										value={ billingData.email }
+										autoComplete="email"
+										onChange={ onChangeEmail }
+										required={ requireEmailField }
+									/>
+								) }
+							</>
+						) : (
+							<>
+								{ showPhoneField && (
+									<PhoneNumber
+										id="shipping-phone"
+										required={ requirePhoneField }
+										value={ shippingAddress.phone }
+										onChange={ ( value ) => {
+											setShippingPhone( value );
+											dispatchCheckoutEvent(
+												'set-phone-number',
+												{
+													step: 'shipping',
+												}
+											);
+										} }
+									/>
+								) }
+							</>
 						) }
+						{ children }
 					</>
-				) : (
-					<>
-						{ showPhoneField && (
-							<PhoneNumber
-								id="shipping-phone"
-								required={ requirePhoneField }
-								value={ shippingAddress.phone }
-								onChange={ ( value ) => {
-									setShippingPhone( value );
-									dispatchCheckoutEvent( 'set-phone-number', {
-										step: 'shipping',
-									} );
-								} }
-							/>
-						) }
-					</>
-				) }
+				</AddressForm>
 			</AddressFormWrapperComponent>
 			<CheckboxControl
 				className="wc-block-checkout__use-address-for-billing"

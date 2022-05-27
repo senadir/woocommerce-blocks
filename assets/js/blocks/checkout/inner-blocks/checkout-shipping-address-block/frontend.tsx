@@ -67,8 +67,9 @@ const FrontendBlock = ( {
 				phoneAsPrimary={ phoneAsPrimary }
 				requireEmailField={ requireEmailField }
 				showEmailField={ showEmailField }
-			/>
-			{ children }
+			>
+				{ children }
+			</Block>
 		</FormStep>
 	);
 };
