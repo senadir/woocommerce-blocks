@@ -877,10 +877,10 @@ class CartController {
 			$index > 1 ?
 				sprintf(
 					/* translators: %d: shipping package number */
-					_x( 'Shipping method %d', 'shipping packages', 'woo-gutenberg-products-block' ),
+					__( 'Shipping method %d', 'woo-gutenberg-products-block' ),
 					$index
 				) :
-				_x( 'Shipping method', 'shipping packages', 'woo-gutenberg-products-block' ),
+				__( 'Shipping method', 'woo-gutenberg-products-block' ),
 			$package['package_id'],
 			$package
 		);
