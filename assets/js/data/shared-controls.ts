@@ -4,7 +4,6 @@
 import { __ } from '@wordpress/i18n';
 import triggerFetch, { APIFetchOptions } from '@wordpress/api-fetch';
 import DataLoader from 'dataloader';
-import { isWpVersion } from '@woocommerce/settings';
 
 /**
  * Internal dependencies
@@ -125,10 +124,11 @@ export const controls = {
 	}: ReturnType< typeof apiFetchWithHeaders > ): Promise< unknown > => {
 		return new Promise( ( resolve, reject ) => {
 			// GET Requests cannot be batched.
+			// Cancelable requests should not be batched.
 			if (
 				! options.method ||
 				options.method === 'GET' ||
-				isWpVersion( '5.6', '<' )
+				options.signal
 			) {
 				// Parse is disabled here to avoid returning just the body--we also need headers.
 				triggerFetch( {
@@ -150,6 +150,9 @@ export const controls = {
 							} );
 					} )
 					.catch( ( errorResponse ) => {
+						if ( errorResponse.name === 'AbortError' ) {
+							return;
+						}
 						setNonceOnFetch( errorResponse.headers );
 						if ( typeof errorResponse.json === 'function' ) {
 							// Parse error response before rejecting it.

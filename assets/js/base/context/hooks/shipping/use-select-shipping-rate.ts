@@ -2,7 +2,7 @@
  * External dependencies
  */
 import { useDispatch, useSelect } from '@wordpress/data';
-import { useCallback } from '@wordpress/element';
+import { useCallback, useRef } from '@wordpress/element';
 import { CART_STORE_KEY as storeKey } from '@woocommerce/block-data';
 import { useThrowError } from '@woocommerce/base-hooks';
 import { SelectShippingRateType } from '@woocommerce/type-defs/shipping';
@@ -22,22 +22,37 @@ import { useStoreEvents } from '../use-store-events';
 export const useSelectShippingRate = (): SelectShippingRateType => {
 	const throwError = useThrowError();
 	const { dispatchCheckoutEvent } = useStoreEvents();
-
+	// See if rates are being selected.
+	const isSelectingRate = useSelect< boolean >( ( select ) => {
+		return select( storeKey ).isShippingRateBeingSelected();
+	}, [] );
 	const { selectShippingRate: dispatchSelectShippingRate } = useDispatch(
 		storeKey
 	) as {
-		selectShippingRate: unknown;
-	} as {
 		selectShippingRate: (
 			newShippingRateId: string,
-			packageId: string | number
+			packageId: string | number,
+			controller: AbortSignal
 		) => Promise< unknown >;
 	};
 
+	// create a new abort controller.
+	const controller = useRef( new AbortController() );
 	// Selects a shipping rate, fires an event, and catch any errors.
 	const selectShippingRate = useCallback(
 		( newShippingRateId, packageId ) => {
-			dispatchSelectShippingRate( newShippingRateId, packageId )
+			// If we're already selecting, let's cancel the previous rate and create a new controller.
+			if ( isSelectingRate ) {
+				controller.current.abort();
+				// We need to create a new controller becasue the previous one is already canceled.
+				controller.current = new AbortController();
+			}
+
+			dispatchSelectShippingRate(
+				newShippingRateId,
+				packageId,
+				controller.current.signal
+			)
 				.then( () => {
 					dispatchCheckoutEvent( 'set-selected-shipping-rate', {
 						shippingRateId: newShippingRateId,
@@ -48,13 +63,13 @@ export const useSelectShippingRate = (): SelectShippingRateType => {
 					throwError( error );
 				} );
 		},
-		[ dispatchSelectShippingRate, dispatchCheckoutEvent, throwError ]
+		[
+			dispatchSelectShippingRate,
+			isSelectingRate,
+			dispatchCheckoutEvent,
+			throwError,
+		]
 	);
-
-	// See if rates are being selected.
-	const isSelectingRate = useSelect< boolean >( ( select ) => {
-		return select( storeKey ).isShippingRateBeingSelected();
-	}, [] );
 
 	return {
 		selectShippingRate,
