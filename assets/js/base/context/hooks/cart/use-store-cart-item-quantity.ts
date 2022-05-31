@@ -2,7 +2,7 @@
  * External dependencies
  */
 import { useSelect, useDispatch } from '@wordpress/data';
-import { useCallback, useState, useEffect } from '@wordpress/element';
+import { useCallback, useState, useEffect, useRef } from '@wordpress/element';
 import { CART_STORE_KEY, CHECKOUT_STORE_KEY } from '@woocommerce/block-data';
 import { useDebounce } from 'use-debounce';
 import { usePrevious } from '@woocommerce/base-hooks';
@@ -89,6 +89,7 @@ export const useStoreCartItemQuantity = (
 			: Promise.resolve( false );
 	}, [ cartItemKey, removeItemFromCart ] );
 
+	const controller = useRef( new AbortController() );
 	// Observe debounced quantity value, fire action to update server on change.
 	useEffect( () => {
 		if (
@@ -97,12 +98,24 @@ export const useStoreCartItemQuantity = (
 			Number.isFinite( previousDebouncedQuantity ) &&
 			previousDebouncedQuantity !== debouncedQuantity
 		) {
-			changeCartItemQuantity( cartItemKey, debouncedQuantity );
+			// If we're already updating quantity, let's cancel the previous update and create a new controller.
+			if ( isPending.quantity ) {
+				controller.current.abort();
+				// We need to create a new controller becasue the previous one is already canceled.
+				controller.current = new AbortController();
+			}
+
+			changeCartItemQuantity(
+				cartItemKey,
+				debouncedQuantity,
+				controller.current.signal
+			);
 		}
 	}, [
 		cartItemKey,
-		changeCartItemQuantity,
 		debouncedQuantity,
+		isPending.quantity,
+		changeCartItemQuantity,
 		previousDebouncedQuantity,
 	] );
 
