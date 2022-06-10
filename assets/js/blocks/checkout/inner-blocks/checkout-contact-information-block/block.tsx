@@ -24,6 +24,7 @@ const Block = ( {
 	phoneAsPrimary: boolean;
 } ): JSX.Element => {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const { customerId, shouldCreateAccount } = useSelect( ( select ) =>
 		select( CHECKOUT_STORE_KEY ).getCheckoutState()
 	);
@@ -35,6 +36,18 @@ const Block = ( {
 
 	const onChangeEmail = ( value: string ) => {
 
+=======
+	const { customerId, shouldCreateAccount, setShouldCreateAccount } =
+		useSelect( ( select ) =>
+			select( CHECKOUT_STORE_KEY ).getCheckoutState()
+		);
+	const { setShouldCreateAccount } = useDispatch( CHECKOUT_STORE_KEY );
+	const { billingAddress, setEmail, setBillingPhone, setShippingPhone } =
+		useCheckoutAddress();
+	const { dispatchCheckoutEvent } = useStoreEvents();
+
+	const onChangeEmail = ( value: string ) => {
+>>>>>>> 3e5b82cad (Convert checkout context to data store - part 1 (#6232))
 		setEmail( value );
 		dispatchCheckoutEvent( 'set-email-address' );
 	};

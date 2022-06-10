@@ -1,0 +1,13 @@
+{
+	"extends": "../../../tsconfig.base.json",
+	"compilerOptions": {},
+	"include": [
+		".",
+		"../types/type-defs/**.ts",
+		"../mapped-types.ts",
+		"../settings/shared/index.js",
+		"../settings/blocks/index.js",
+		"../base/context/providers/cart-checkout/checkout-state/utils.ts"
+	],
+	"exclude": [ "**/test/**" ]
+}
