@@ -17,6 +17,7 @@ import {
 	config as paymentDataStoreConfig,
 } from '../../../../data/payment';
 
+<<<<<<< HEAD
 jest.mock( '../../providers/cart-checkout/checkout-events', () => {
 	const original = jest.requireActual(
 		'../../providers/cart-checkout/checkout-events'
@@ -28,6 +29,25 @@ jest.mock( '../../providers/cart-checkout/checkout-events', () => {
 		},
 	};
 } );
+=======
+const mockUseCheckoutEventsContext = {
+	onSubmit: jest.fn(),
+};
+const mockUsePaymentMethodDataContext = {
+	activePaymentMethod: '',
+	currentStatus: {
+		isDoingExpressPayment: false,
+	},
+};
+
+jest.mock( '../../providers/cart-checkout/checkout-events', () => ( {
+	useCheckoutEventsContext: () => mockUseCheckoutEventsContext,
+} ) );
+
+jest.mock( '../../providers/cart-checkout/payment-methods', () => ( {
+	usePaymentMethodDataContext: () => mockUsePaymentMethodDataContext,
+} ) );
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 
 describe( 'useCheckoutSubmit', () => {
 	let registry, renderer;
@@ -65,6 +85,12 @@ describe( 'useCheckoutSubmit', () => {
 
 		onSubmit();
 
+<<<<<<< HEAD
 		expect( onSubmit ).toHaveBeenCalledTimes( 1 );
+=======
+		expect( mockUseCheckoutEventsContext.onSubmit ).toHaveBeenCalledTimes(
+			1
+		);
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 	} );
 } );

@@ -19,9 +19,15 @@ import { ValidationInputError } from '@woocommerce/blocks-checkout';
  */
 import { useStoreCart } from '../cart/use-store-cart';
 import { useStoreCartCoupons } from '../cart/use-store-cart-coupons';
+<<<<<<< HEAD
 import { noticeContexts, responseTypes } from '../../event-emit';
 import { useCheckoutEventsContext } from '../../providers/cart-checkout/checkout-events';
 import { usePaymentEventsContext } from '../../providers/cart-checkout/payment-events';
+=======
+import { useEmitResponse } from '../use-emit-response';
+import { useCheckoutEventsContext } from '../../providers/cart-checkout/checkout-events';
+import { usePaymentMethodDataContext } from '../../providers/cart-checkout/payment-methods';
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 import { useShippingDataContext } from '../../providers/cart-checkout/shipping';
 import { useCustomerDataContext } from '../../providers/cart-checkout/customer';
 import { prepareTotalItems } from './utils';
@@ -38,6 +44,25 @@ export const usePaymentMethodInterface = (): PaymentMethodInterface => {
 		onCheckoutAfterProcessingWithError,
 		onSubmit,
 	} = useCheckoutEventsContext();
+<<<<<<< HEAD
+=======
+	const {
+		isCalculating,
+		isComplete,
+		isIdle,
+		isProcessing,
+		customerId,
+	} = useSelect( ( select ) => {
+		const store = select( CHECKOUT_STORE_KEY );
+		return {
+			isComplete: store.isComplete(),
+			isIdle: store.isIdle(),
+			isProcessing: store.isProcessing(),
+			customerId: store.getCustomerId(),
+			isCalculating: store.isCalculating(),
+		};
+	} );
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 
 	const { isCalculating, isComplete, isIdle, isProcessing, customerId } =
 		useSelect( ( select ) => {

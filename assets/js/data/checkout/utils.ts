@@ -10,12 +10,16 @@ import type { createErrorNotice as originalCreateErrorNotice } from '@wordpress/
 /**
  * Internal dependencies
  */
+<<<<<<< HEAD
 import {
 	isErrorResponse,
 	isFailResponse,
 	isSuccessResponse,
 	shouldRetry,
 } from '../../base/context/event-emit';
+=======
+import { useEmitResponse } from '../../base/context/hooks/use-emit-response';
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 import {
 	CheckoutAndPaymentNotices,
 	CheckoutAfterProcessingWithErrorEventData,
@@ -23,6 +27,20 @@ import {
 import { DispatchFromMap } from '../mapped-types';
 import * as actions from './actions';
 
+<<<<<<< HEAD
+=======
+const {
+	isErrorResponse,
+	isFailResponse,
+	isSuccessResponse,
+	shouldRetry,
+} = useEmitResponse(); // eslint-disable-line react-hooks/rules-of-hooks
+
+// TODO: `useEmitResponse` is not a react hook, it just exposes some functions as
+// properties of an object. Refactor this to not be a hook, we could simply import
+// those functions where needed
+
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 /**
  * Based on the given observers, create Error Notices where necessary
  * and return the error response of the last registered observer
@@ -80,9 +98,15 @@ export const runCheckoutAfterProcessingWithErrorObservers = ( {
 	if ( errorResponse !== null ) {
 		// irrecoverable error so set complete
 		if ( ! shouldRetry( errorResponse ) ) {
+<<<<<<< HEAD
 			dispatch.__internalSetComplete( errorResponse );
 		} else {
 			dispatch.__internalSetIdle();
+=======
+			dispatch.setComplete( errorResponse );
+		} else {
+			dispatch.setIdle();
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 		}
 	} else {
 		const hasErrorNotices =
@@ -110,7 +134,11 @@ export const runCheckoutAfterProcessingWithErrorObservers = ( {
 			} );
 		}
 
+<<<<<<< HEAD
 		dispatch.__internalSetIdle();
+=======
+		dispatch.setIdle();
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 	}
 };
 
@@ -143,7 +171,11 @@ export const runCheckoutAfterProcessingWithSuccessObservers = ( {
 	} );
 
 	if ( successResponse && ! errorResponse ) {
+<<<<<<< HEAD
 		dispatch.__internalSetComplete( successResponse );
+=======
+		dispatch.setComplete( successResponse );
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 	} else if ( isObject( errorResponse ) ) {
 		if ( errorResponse.message && isString( errorResponse.message ) ) {
 			const errorOptions =
@@ -156,16 +188,28 @@ export const runCheckoutAfterProcessingWithSuccessObservers = ( {
 			createErrorNotice( errorResponse.message, errorOptions );
 		}
 		if ( ! shouldRetry( errorResponse ) ) {
+<<<<<<< HEAD
 			dispatch.__internalSetComplete( errorResponse );
+=======
+			dispatch.setComplete( errorResponse );
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 		} else {
 			// this will set an error which will end up
 			// triggering the onCheckoutAfterProcessingWithError emitter.
 			// and then setting checkout to IDLE state.
+<<<<<<< HEAD
 			dispatch.__internalSetHasError( true );
 		}
 	} else {
 		// nothing hooked in had any response type so let's just consider successful.
 		dispatch.__internalSetComplete();
+=======
+			dispatch.setHasError( true );
+		}
+	} else {
+		// nothing hooked in had any response type so let's just consider successful.
+		dispatch.setComplete();
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 	}
 };
 
@@ -193,8 +237,14 @@ export const getPaymentResultFromCheckoutResponse = (
 		) {
 			response.payment_result.payment_details.forEach(
 				( { key, value }: { key: string; value: string } ) => {
+<<<<<<< HEAD
 					paymentResult.paymentDetails[ key ] =
 						decodeEntities( value );
+=======
+					paymentResult.paymentDetails[ key ] = decodeEntities(
+						value
+					);
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 				}
 			);
 		}

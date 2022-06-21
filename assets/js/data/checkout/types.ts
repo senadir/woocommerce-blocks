@@ -12,14 +12,21 @@ import type { CheckoutState } from './default-state';
 import type { DispatchFromMap, SelectFromMap } from '../mapped-types';
 import * as selectors from './selectors';
 import * as actions from './actions';
+<<<<<<< HEAD
 import { FieldValidationStatus } from '../types';
+=======
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 
 export type CheckoutAfterProcessingWithErrorEventData = {
 	redirectUrl: CheckoutState[ 'redirectUrl' ];
 	orderId: CheckoutState[ 'orderId' ];
 	customerId: CheckoutState[ 'customerId' ];
 	orderNotes: CheckoutState[ 'orderNotes' ];
+<<<<<<< HEAD
 	processingResponse: CheckoutState[ 'paymentResult' ];
+=======
+	processingResponse: CheckoutState[ 'processingResponse' ];
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 };
 export type CheckoutAndPaymentNotices = {
 	checkoutNotices: Notice[];
@@ -54,9 +61,13 @@ export type emitValidateEventType = ( {
 	setValidationErrors,
 }: {
 	observers: EventObserversType;
+<<<<<<< HEAD
 	setValidationErrors: (
 		errors: Record< string, FieldValidationStatus >
 	) => void;
+=======
+	setValidationErrors: ( errors: Array< unknown > ) => void;
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 } ) => ( {
 	dispatch,
 	registry,

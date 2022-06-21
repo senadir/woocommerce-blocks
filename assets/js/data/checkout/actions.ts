@@ -8,6 +8,12 @@ import { PaymentResult } from '@woocommerce/types';
  */
 import { ACTION_TYPES as types } from './action-types';
 import { ReturnOrGeneratorYieldUnion } from '../mapped-types';
+<<<<<<< HEAD
+=======
+
+// `Thunks are functions that can be dispatched, similar to actions creators
+export * from './thunks';
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 
 // `Thunks are functions that can be dispatched, similar to actions creators
 export * from './thunks';
@@ -70,12 +76,16 @@ export const __internalSetPaymentResult = ( data: PaymentResult ) => ( {
 	data,
 } );
 
+<<<<<<< HEAD
 /**
  * Set whether the checkout has an error or not
  *
  * @param  hasError Wether the checkout has an error or not
  */
 export const __internalSetHasError = ( hasError = true ) => ( {
+=======
+export const setHasError = ( hasError = true ) => ( {
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 	type: types.SET_HAS_ERROR,
 	hasError,
 } );
@@ -152,6 +162,7 @@ export const __internalSetExtensionData = (
 	extensionData,
 } );
 
+<<<<<<< HEAD
 export type CheckoutAction =
 	| ReturnOrGeneratorYieldUnion<
 			| typeof __internalSetIdle
@@ -171,3 +182,24 @@ export type CheckoutAction =
 			| typeof __internalSetExtensionData
 	  >
 	| Record< string, never >;
+=======
+export type CheckoutAction = ReturnOrGeneratorYieldUnion<
+	| typeof setPristine
+	| typeof setIdle
+	| typeof setComplete
+	| typeof setProcessing
+	| typeof setProcessingResponse
+	| typeof setBeforeProcessing
+	| typeof setAfterProcessing
+	| typeof setRedirectUrl
+	| typeof setHasError
+	| typeof incrementCalculating
+	| typeof decrementCalculating
+	| typeof setCustomerId
+	| typeof setOrderId
+	| typeof setUseShippingAsBilling
+	| typeof setShouldCreateAccount
+	| typeof setOrderNotes
+	| typeof setExtensionData
+>;
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))

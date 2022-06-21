@@ -14,15 +14,20 @@ import {
 import { usePrevious } from '@woocommerce/base-hooks';
 import deprecated from '@wordpress/deprecated';
 import { useDispatch, useSelect } from '@wordpress/data';
+<<<<<<< HEAD
 import {
 	CHECKOUT_STORE_KEY,
 	PAYMENT_STORE_KEY,
 	VALIDATION_STORE_KEY,
 } from '@woocommerce/block-data';
+=======
+import { CHECKOUT_STORE_KEY } from '@woocommerce/block-data';
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 
 /**
  * Internal dependencies
  */
+<<<<<<< HEAD
 import { useEventEmitters, reducer as emitReducer } from './event-emit';
 import type { emitterCallback } from '../../../event-emit';
 import { STATUS } from '../../../../../data/checkout/constants';
@@ -49,6 +54,18 @@ type CheckoutEventsContextType = {
 };
 
 const CheckoutEventsContext = createContext< CheckoutEventsContextType >( {
+=======
+import type { CheckoutEventsContextType } from './types';
+import { useEventEmitters, reducer as emitReducer } from './event-emit';
+import { STATUS } from '../../../../../data/checkout/constants';
+import { useValidationContext } from '../../validation';
+import { useStoreEvents } from '../../../hooks/use-store-events';
+import { useCheckoutNotices } from '../../../hooks/use-checkout-notices';
+import { useEmitResponse } from '../../../hooks/use-emit-response';
+import { CheckoutState } from '../../../../../data/checkout/default-state';
+
+const CheckoutEventsContext = createContext( {
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 	onSubmit: () => void null,
 	onCheckoutAfterProcessingWithSuccess: () => () => void null,
 	onCheckoutAfterProcessingWithError: () => () => void null,
@@ -75,6 +92,7 @@ export const CheckoutEventsProvider = ( {
 	children: React.ReactChildren;
 	redirectUrl: string;
 } ): JSX.Element => {
+<<<<<<< HEAD
 	const paymentMethods = getPaymentMethods();
 	const expressPaymentMethods = getExpressPaymentMethods();
 	const { isEditor } = useEditorContext();
@@ -101,12 +119,15 @@ export const CheckoutEventsProvider = ( {
 		__internalUpdateAvailablePaymentMethods,
 	] );
 
+=======
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 	const checkoutActions = useDispatch( CHECKOUT_STORE_KEY );
 	const checkoutState: CheckoutState = useSelect( ( select ) =>
 		select( CHECKOUT_STORE_KEY ).getCheckoutState()
 	);
 
 	if ( redirectUrl && redirectUrl !== checkoutState.redirectUrl ) {
+<<<<<<< HEAD
 		checkoutActions.__internalSetRedirectUrl( redirectUrl );
 	}
 
@@ -116,6 +137,26 @@ export const CheckoutEventsProvider = ( {
 	const { dispatchCheckoutEvent } = useStoreEvents();
 	const { checkoutNotices, paymentNotices, expressPaymentNotices } =
 		useCheckoutNotices();
+=======
+		checkoutActions.setRedirectUrl( redirectUrl );
+	}
+
+	const { setValidationErrors } = useValidationContext();
+	const { createErrorNotice } = useDispatch( 'core/notices' );
+
+	const { dispatchCheckoutEvent } = useStoreEvents();
+	const {
+		isSuccessResponse,
+		isErrorResponse,
+		isFailResponse,
+		shouldRetry,
+	} = useEmitResponse();
+	const {
+		checkoutNotices,
+		paymentNotices,
+		expressPaymentNotices,
+	} = useCheckoutNotices();
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 
 	const [ observers, observerDispatch ] = useReducer( emitReducer, {} );
 	const currentObservers = useRef( observers );
@@ -155,7 +196,11 @@ export const CheckoutEventsProvider = ( {
 	// the registered callbacks
 	useEffect( () => {
 		if ( checkoutState.status === STATUS.BEFORE_PROCESSING ) {
+<<<<<<< HEAD
 			checkoutActions.__internalEmitValidateEvent( {
+=======
+			checkoutActions.emitValidateEvent( {
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 				observers: currentObservers.current,
 				setValidationErrors,
 			} );
@@ -181,7 +226,11 @@ export const CheckoutEventsProvider = ( {
 		}
 
 		if ( checkoutState.status === STATUS.AFTER_PROCESSING ) {
+<<<<<<< HEAD
 			checkoutActions.__internalEmitAfterProcessingEvents( {
+=======
+			checkoutActions.emitAfterProcessingEvents( {
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 				observers: currentObservers.current,
 				notices: {
 					checkoutNotices,
@@ -197,10 +246,21 @@ export const CheckoutEventsProvider = ( {
 		checkoutState.orderId,
 		checkoutState.customerId,
 		checkoutState.orderNotes,
+<<<<<<< HEAD
 		checkoutState.paymentResult,
 		previousStatus,
 		previousHasError,
 		createErrorNotice,
+=======
+		checkoutState.processingResponse,
+		previousStatus,
+		previousHasError,
+		createErrorNotice,
+		isErrorResponse,
+		isFailResponse,
+		isSuccessResponse,
+		shouldRetry,
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 		checkoutNotices,
 		expressPaymentNotices,
 		paymentNotices,
@@ -209,10 +269,17 @@ export const CheckoutEventsProvider = ( {
 
 	const onSubmit = useCallback( () => {
 		dispatchCheckoutEvent( 'submit' );
+<<<<<<< HEAD
 		checkoutActions.__internalSetBeforeProcessing();
 	}, [ dispatchCheckoutEvent, checkoutActions ] );
 
 	const checkoutEventHandlers = {
+=======
+		checkoutActions.setBeforeProcessing();
+	}, [ dispatchCheckoutEvent, checkoutActions ] );
+
+	const checkoutEventHandlers: CheckoutEventsContextType = {
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 		onSubmit,
 		onCheckoutBeforeProcessing,
 		onCheckoutValidationBeforeProcessing,
