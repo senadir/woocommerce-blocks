@@ -56,11 +56,28 @@ export const __internalSetRedirectUrl = ( redirectUrl: string ) => ( {
 } );
 
 /**
+<<<<<<< HEAD
+=======
+ * Store the result of the payment attempt from the /checkout StoreApi call
+ *
+ * @param  data The result of the payment attempt through the StoreApi /checkout endpoints
+ */
+export const __internalSetPaymentResult = ( data: PaymentResult ) => ( {
+	type: types.SET_PAYMENT_RESULT,
+	data,
+} );
+
+<<<<<<< HEAD
+/**
+>>>>>>> ab10fa495 (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
  * Set whether the checkout has an error or not
  *
  * @param  hasError Wether the checkout has an error or not
  */
 export const __internalSetHasError = ( hasError = true ) => ( {
+=======
+export const setHasError = ( hasError = true ) => ( {
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 	type: types.SET_HAS_ERROR,
 	hasError,
 } );
@@ -137,6 +154,7 @@ export const __internalSetExtensionData = (
 	extensionData,
 } );
 
+<<<<<<< HEAD
 export type CheckoutAction =
 	| ReturnOrGeneratorYieldUnion<
 			| typeof __internalSetIdle
@@ -155,3 +173,24 @@ export type CheckoutAction =
 			| typeof __internalSetExtensionData
 	  >
 	| Record< string, never >;
+=======
+export type CheckoutAction = ReturnOrGeneratorYieldUnion<
+	| typeof setPristine
+	| typeof setIdle
+	| typeof setComplete
+	| typeof setProcessing
+	| typeof setProcessingResponse
+	| typeof setBeforeProcessing
+	| typeof setAfterProcessing
+	| typeof setRedirectUrl
+	| typeof setHasError
+	| typeof incrementCalculating
+	| typeof decrementCalculating
+	| typeof setCustomerId
+	| typeof setOrderId
+	| typeof setUseShippingAsBilling
+	| typeof setShouldCreateAccount
+	| typeof setOrderNotes
+	| typeof setExtensionData
+>;
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))

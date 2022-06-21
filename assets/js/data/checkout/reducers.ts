@@ -6,7 +6,11 @@ import { STATUS } from './constants';
 import { defaultState } from './default-state';
 import { CheckoutAction } from './actions';
 
+<<<<<<< HEAD
 const reducer = ( state = defaultState, action: CheckoutAction ) => {
+=======
+const reducer: Reducer = ( state = defaultState, action: CheckoutAction ) => {
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 	let newState = state;
 	switch ( action.type ) {
 		case types.SET_IDLE:

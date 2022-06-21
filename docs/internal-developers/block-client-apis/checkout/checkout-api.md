@@ -35,6 +35,7 @@ The following data is available:
 -   `orderId`: The order id for the order attached to the current checkout.
 -   `customerId`: The ID of the customer if the customer has an account, or `0` for guests.
 -   `calculatingCount`: If any of the totals, taxes, shipping, etc need to be calculated, the count will be increased here.
+-   `paymentResult`: The result of processing the payment.
 -   `useShippingAsBilling`: Should the billing form be hidden and inherit the shipping address?
 -   `shouldCreateAccount`: Should a user account be created with this order?
 -   `extensionData`: This is used by plugins that extend Cart & Checkout to pass custom data to the Store API on checkout processing

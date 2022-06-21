@@ -10,6 +10,10 @@ import { __experimentalApplyCheckoutFilter } from '@woocommerce/blocks-checkout'
  * Internal dependencies
  */
 import { useCheckoutEventsContext } from '../providers';
+<<<<<<< HEAD
+=======
+import { usePaymentMethodDataContext } from '../providers/cart-checkout/payment-methods';
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 import { usePaymentMethods } from './payment-methods/use-payment-methods';
 
 /**
@@ -39,6 +43,7 @@ export const useCheckoutSubmit = () => {
 		( select ) => {
 			const store = select( PAYMENT_STORE_KEY );
 
+<<<<<<< HEAD
 			return {
 				activePaymentMethod: store.getActivePaymentMethod(),
 				isExpressPaymentMethodActive:
@@ -47,6 +52,8 @@ export const useCheckoutSubmit = () => {
 		}
 	);
 
+=======
+>>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 	const { onSubmit } = useCheckoutEventsContext();
 
 	const { paymentMethods = {} } = usePaymentMethods();
