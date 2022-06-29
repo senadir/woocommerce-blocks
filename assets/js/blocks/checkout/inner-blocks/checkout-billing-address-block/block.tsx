@@ -7,6 +7,8 @@ import {
 	useStoreEvents,
 	useEditorContext,
 } from '@woocommerce/base-context';
+import { __ } from '@wordpress/i18n';
+import { ValidatedTextInput } from '@woocommerce/base-components/text-input';
 import { AddressForm } from '@woocommerce/base-components/cart-checkout';
 import Noninteractive from '@woocommerce/base-components/noninteractive';
 import type {
@@ -25,22 +27,34 @@ const Block = ( {
 	showApartmentField = false,
 	showPhoneField = false,
 	requireCompanyField = false,
+	showEmailField = false,
 	requirePhoneField = false,
+	requireEmailField = false,
+	phoneAsPrimary = false,
 }: {
 	showCompanyField: boolean;
 	showApartmentField: boolean;
 	showPhoneField: boolean;
+	showEmailField: boolean;
 	requireCompanyField: boolean;
 	requirePhoneField: boolean;
+	requireEmailField: boolean;
+	phoneAsPrimary: boolean;
 } ): JSX.Element => {
 	const {
 		defaultAddressFields,
 		billingAddress,
 		setBillingAddress,
+		setEmail,
 		setBillingPhone,
 	} = useCheckoutAddress();
 	const { dispatchCheckoutEvent } = useStoreEvents();
 	const { isEditor } = useEditorContext();
+
+	const onChangeEmail = ( value ) => {
+		setEmail( value );
+		dispatchCheckoutEvent( 'set-email-address' );
+	};
 
 	// Clears data if fields are hidden.
 	useEffect( () => {
@@ -84,17 +98,46 @@ const Block = ( {
 				}
 				fieldConfig={ addressFieldsConfig }
 			/>
-			{ showPhoneField && (
-				<PhoneNumber
-					isRequired={ requirePhoneField }
-					value={ billingAddress.phone }
-					onChange={ ( value ) => {
-						setBillingPhone( value );
-						dispatchCheckoutEvent( 'set-phone-number', {
-							step: 'billing',
-						} );
-					} }
-				/>
+			{ phoneAsPrimary ? (
+				<>
+					{ showEmailField && (
+						<ValidatedTextInput
+							id="email"
+							type="email"
+							label={
+								requireEmailField
+									? __(
+											'Email',
+											'woo-gutenberg-products-block'
+									  )
+									: __(
+											'Email (optional)',
+											'woo-gutenberg-products-block'
+									  )
+							}
+							value={ billingAddress.email }
+							autoComplete="email"
+							onChange={ onChangeEmail }
+							required={ requireEmailField }
+						/>
+					) }
+				</>
+			) : (
+				<>
+					{ showPhoneField && (
+						<PhoneNumber
+							id="billing-phone"
+							required={ requirePhoneField }
+							value={ billingAddress.phone }
+							onChange={ ( value ) => {
+								setBillingPhone( value );
+								dispatchCheckoutEvent( 'set-phone-number', {
+									step: 'billing',
+								} );
+							} }
+						/>
+					) }
+				</>
 			) }
 		</AddressFormWrapperComponent>
 	);

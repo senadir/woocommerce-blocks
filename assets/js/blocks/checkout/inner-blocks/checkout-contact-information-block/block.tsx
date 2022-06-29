@@ -28,9 +28,13 @@ const Block = ( {
 		shouldCreateAccount,
 		setShouldCreateAccount,
 	} = useCheckoutContext();
-	const { billingAddress, setEmail, setBillingPhone } = useCheckoutAddress();
+	const {
+		billingAddress,
+		setEmail,
+		setBillingPhone,
+		setShippingPhone,
+	} = useCheckoutAddress();
 	const { dispatchCheckoutEvent } = useStoreEvents();
-
 	const onChangeEmail = ( value ) => {
 		setEmail( value );
 		dispatchCheckoutEvent( 'set-email-address' );
@@ -38,7 +42,8 @@ const Block = ( {
 
 	const onChangePhone = ( value ) => {
 		setBillingPhone( value );
-		dispatchCheckoutEvent( 'set-email-address' );
+		setShippingPhone( value );
+		dispatchCheckoutEvent( 'set-phone' );
 	};
 
 	const createAccountUI = ! customerId &&
