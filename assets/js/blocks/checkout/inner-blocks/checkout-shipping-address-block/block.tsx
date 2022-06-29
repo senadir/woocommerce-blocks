@@ -51,7 +51,7 @@ const Block = ( {
 		shippingAddress,
 		setShippingPhone,
 		setEmail,
-		billingData,
+		billingAddress,
 		useShippingAsBilling,
 		setUseShippingAsBilling,
 	} = useCheckoutAddress();
@@ -149,7 +149,7 @@ const Block = ( {
 														'woo-gutenberg-products-block'
 												  )
 										}
-										value={ billingData.email }
+										value={ billingAddress.email }
 										autoComplete="email"
 										onChange={ onChangeEmail }
 										required={ requireEmailField }

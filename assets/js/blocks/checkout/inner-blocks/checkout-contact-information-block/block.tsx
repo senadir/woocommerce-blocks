@@ -23,6 +23,7 @@ const Block = ( {
 	allowCreateAccount: boolean;
 	phoneAsPrimary: boolean;
 } ): JSX.Element => {
+<<<<<<< HEAD
 	const { customerId, shouldCreateAccount } = useSelect( ( select ) =>
 		select( CHECKOUT_STORE_KEY ).getCheckoutState()
 	);
@@ -33,13 +34,29 @@ const Block = ( {
 	const { dispatchCheckoutEvent } = useStoreEvents();
 
 	const onChangeEmail = ( value: string ) => {
+=======
+	const {
+		customerId,
+		shouldCreateAccount,
+		setShouldCreateAccount,
+	} = useCheckoutContext();
+	const {
+		billingAddress,
+		setEmail,
+		setBillingPhone,
+		setShippingPhone,
+	} = useCheckoutAddress();
+	const { dispatchCheckoutEvent } = useStoreEvents();
+	const onChangeEmail = ( value ) => {
+>>>>>>> 87d80770b (better support for phone)
 		setEmail( value );
 		dispatchCheckoutEvent( 'set-email-address' );
 	};
 
 	const onChangePhone = ( value ) => {
 		setBillingPhone( value );
-		dispatchCheckoutEvent( 'set-email-address' );
+		setShippingPhone( value );
+		dispatchCheckoutEvent( 'set-phone' );
 	};
 
 	const createAccountUI = ! customerId &&
