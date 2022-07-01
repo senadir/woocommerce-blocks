@@ -189,6 +189,7 @@ const Block = ( {
 			showErrorMessage={ CURRENT_USER_IS_ADMIN }
 		>
 			<SnackbarNoticesContainer context="wc/checkout" />
+<<<<<<< HEAD
 			<StoreNoticesContainer context="wc/checkout" />
 			{ /* SlotFillProvider need to be defined before CheckoutProvider so fills have the SlotFill context ready when they mount. */ }
 			<SlotFillProvider>
@@ -205,6 +206,26 @@ const Block = ( {
 					</SidebarLayout>
 				</CheckoutProvider>
 			</SlotFillProvider>
+=======
+			<StoreNoticesProvider>
+				<StoreNoticesContainer context="wc/checkout" />
+				{ /* SlotFillProvider need to be defined before CheckoutProvider so fills have the SlotFill context ready when they mount. */ }
+				<SlotFillProvider>
+					<CheckoutProvider>
+						<SidebarLayout
+							className={ classnames( 'wc-block-checkout', {
+								'has-dark-controls': attributes.hasDarkControls,
+							} ) }
+						>
+							<Checkout attributes={ attributes }>
+								{ children }
+							</Checkout>
+							<ScrollOnError scrollToTop={ scrollToTop } />
+						</SidebarLayout>
+					</CheckoutProvider>
+				</SlotFillProvider>
+			</StoreNoticesProvider>
+>>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 		</BlockErrorBoundary>
 	);
 };

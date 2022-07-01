@@ -17,6 +17,7 @@ import {
 import { useDispatch, useSelect } from '@wordpress/data';
 import {
 	CHECKOUT_STORE_KEY,
+<<<<<<< HEAD
 	PAYMENT_STORE_KEY,
 	VALIDATION_STORE_KEY,
 } from '@woocommerce/block-data';
@@ -24,6 +25,10 @@ import {
 	getPaymentMethods,
 	getExpressPaymentMethods,
 } from '@woocommerce/blocks-registry';
+=======
+	VALIDATION_STORE_KEY,
+} from '@woocommerce/block-data';
+>>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 
 /**
  * Internal dependencies
@@ -32,7 +37,13 @@ import { preparePaymentData, processCheckoutResponseHeaders } from './utils';
 import { useCheckoutEventsContext } from './checkout-events';
 import { useShippingDataContext } from './shipping';
 import { useCustomerDataContext } from './customer';
+<<<<<<< HEAD
 import { useStoreCart } from '../../hooks/cart/use-store-cart';
+=======
+import { usePaymentMethodDataContext } from './payment-methods';
+import { useStoreCart } from '../../hooks/cart/use-store-cart';
+import { useStoreNoticesContext } from '../store-notices';
+>>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 
 /**
  * CheckoutProcessor component.

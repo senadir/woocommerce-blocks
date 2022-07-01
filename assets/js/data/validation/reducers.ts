@@ -21,7 +21,11 @@ const reducer: Reducer< Record< string, FieldValidationStatus > > = (
 	switch ( action.type ) {
 		case types.SET_VALIDATION_ERRORS:
 			const newErrors = pickBy( action.errors, ( error, property ) => {
+<<<<<<< HEAD
 				if ( typeof error?.message !== 'string' ) {
+=======
+				if ( typeof error.message !== 'string' ) {
+>>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 					return false;
 				}
 				if ( state.hasOwnProperty( property ) ) {

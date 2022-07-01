@@ -6,7 +6,11 @@ import { decodeEntities } from '@wordpress/html-entities';
 import { SelectControl } from 'wordpress-components';
 import { useEffect } from 'react';
 import classnames from 'classnames';
+<<<<<<< HEAD
 import { ValidationInputError } from '@woocommerce/blocks-checkout';
+=======
+import { ValidationInputError } from '@woocommerce/base-components/validation-input-error';
+>>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 import { VALIDATION_STORE_KEY } from '@woocommerce/block-data';
 import { useDispatch, useSelect } from '@wordpress/data';
 
@@ -31,6 +35,19 @@ const AttributeSelectControl = ( {
 		'woo-gutenberg-products-block'
 	),
 } ) => {
+<<<<<<< HEAD
+=======
+	const { setValidationErrors, clearValidationError } = useDispatch(
+		VALIDATION_STORE_KEY
+	);
+
+	const { getValidationError } = useSelect( ( select ) => {
+		const store = select( VALIDATION_STORE_KEY );
+		return {
+			getValidationError: store.getValidationError(),
+		};
+	} );
+>>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 	const errorId = attributeName;
 
 	const { setValidationErrors, clearValidationError } =

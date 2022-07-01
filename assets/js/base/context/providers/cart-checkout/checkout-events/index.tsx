@@ -15,6 +15,7 @@ import { usePrevious } from '@woocommerce/base-hooks';
 import deprecated from '@wordpress/deprecated';
 import { useDispatch, useSelect } from '@wordpress/data';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {
 	CHECKOUT_STORE_KEY,
 	PAYMENT_STORE_KEY,
@@ -23,6 +24,12 @@ import {
 =======
 import { CHECKOUT_STORE_KEY } from '@woocommerce/block-data';
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+import {
+	CHECKOUT_STORE_KEY,
+	VALIDATION_STORE_KEY,
+} from '@woocommerce/block-data';
+>>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 
 /**
  * Internal dependencies
@@ -58,7 +65,6 @@ const CheckoutEventsContext = createContext< CheckoutEventsContextType >( {
 import type { CheckoutEventsContextType } from './types';
 import { useEventEmitters, reducer as emitReducer } from './event-emit';
 import { STATUS } from '../../../../../data/checkout/constants';
-import { useValidationContext } from '../../validation';
 import { useStoreEvents } from '../../../hooks/use-store-events';
 import { useCheckoutNotices } from '../../../hooks/use-checkout-notices';
 import { useEmitResponse } from '../../../hooks/use-emit-response';
@@ -141,7 +147,7 @@ export const CheckoutEventsProvider = ( {
 		checkoutActions.setRedirectUrl( redirectUrl );
 	}
 
-	const { setValidationErrors } = useValidationContext();
+	const { setValidationErrors } = useDispatch( VALIDATION_STORE_KEY );
 	const { createErrorNotice } = useDispatch( 'core/notices' );
 
 	const { dispatchCheckoutEvent } = useStoreEvents();

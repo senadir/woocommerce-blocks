@@ -1,0 +1,19 @@
+{
+	"extends": "../../../../tsconfig.base.json",
+	"compilerOptions": {},
+	"include": [
+		".",
+		"../../types",
+		"../../../../storybook",
+		"../../../../packages/prices",
+		"../../../../packages/checkout",
+		"../context",
+		"../../type-defs",
+		"../hocs",
+		"../../atomic/utils",
+		"../../atomic/blocks/component-init.js",
+		"../../data",
+		"../../shared/context"
+	],
+	"exclude": [ "**/test/**" ]
+}

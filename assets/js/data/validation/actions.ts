@@ -20,21 +20,33 @@ export const clearValidationError = ( error: string ) => ( {
 	type: types.CLEAR_VALIDATION_ERROR,
 	error,
 } );
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 export const hideValidationError = ( error: string ) => ( {
 	type: types.HIDE_VALIDATION_ERROR,
 	error,
 } );
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 export const showValidationError = ( error: string ) => ( {
 	type: types.SHOW_VALIDATION_ERROR,
 	error,
 } );
+<<<<<<< HEAD
 
 export const showAllValidationErrors = () => ( {
 	type: types.SHOW_ALL_VALIDATION_ERRORS,
 } );
 
+=======
+export const showAllValidationErrors = () => ( {
+	type: types.SHOW_ALL_VALIDATION_ERRORS,
+} );
+>>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 export type ValidationAction = ReturnOrGeneratorYieldUnion<
 	| typeof setValidationErrors
 	| typeof clearAllValidationErrors

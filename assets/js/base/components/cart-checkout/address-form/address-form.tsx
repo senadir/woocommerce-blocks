@@ -35,7 +35,11 @@ import prepareAddressFields from './prepare-address-fields';
 // If it's the shipping address form and the user starts entering address
 // values without having set the country first, show an error.
 const validateShippingCountry = (
+<<<<<<< HEAD
 	values: ShippingAddress,
+=======
+	values: EnteredAddress,
+>>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 	setValidationErrors: (
 		errors: Record< string, FieldValidationStatus >
 	) => void,
@@ -95,6 +99,7 @@ const AddressForm = ( {
 	values,
 	children,
 }: AddressFormProps ): JSX.Element => {
+<<<<<<< HEAD
 	const validationErrorId = 'shipping-missing-country';
 	const { setValidationErrors, clearValidationError } =
 		useDispatch( VALIDATION_STORE_KEY );
@@ -102,6 +107,15 @@ const AddressForm = ( {
 	const countryValidationError = useSelect( ( select ) => {
 		const store = select( VALIDATION_STORE_KEY );
 		return store.getValidationError( validationErrorId );
+=======
+	const { setValidationErrors, clearValidationError } = useDispatch(
+		VALIDATION_STORE_KEY
+	);
+
+	const getValidationError = useSelect( ( select ) => {
+		const store = select( VALIDATION_STORE_KEY );
+		return store.getValidationError();
+>>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 	} );
 
 	const currentFields = useShallowEqual( fields );

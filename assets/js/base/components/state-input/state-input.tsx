@@ -5,7 +5,11 @@ import { __ } from '@wordpress/i18n';
 import { decodeEntities } from '@wordpress/html-entities';
 import { useCallback, useMemo, useEffect, useRef } from '@wordpress/element';
 import classnames from 'classnames';
+<<<<<<< HEAD
 import { ValidatedTextInput } from '@woocommerce/blocks-checkout';
+=======
+import { ValidatedTextInput } from '@woocommerce/base-components/text-input';
+>>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 
 /**
  * Internal dependencies
