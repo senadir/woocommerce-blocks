@@ -67,7 +67,6 @@ import { useEventEmitters, reducer as emitReducer } from './event-emit';
 import { STATUS } from '../../../../../data/checkout/constants';
 import { useStoreEvents } from '../../../hooks/use-store-events';
 import { useCheckoutNotices } from '../../../hooks/use-checkout-notices';
-import { useEmitResponse } from '../../../hooks/use-emit-response';
 import { CheckoutState } from '../../../../../data/checkout/default-state';
 
 const CheckoutEventsContext = createContext( {
@@ -151,6 +150,7 @@ export const CheckoutEventsProvider = ( {
 	const { createErrorNotice } = useDispatch( 'core/notices' );
 
 	const { dispatchCheckoutEvent } = useStoreEvents();
+<<<<<<< HEAD
 	const {
 		isSuccessResponse,
 		isErrorResponse,
@@ -163,6 +163,10 @@ export const CheckoutEventsProvider = ( {
 		expressPaymentNotices,
 	} = useCheckoutNotices();
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+	const { checkoutNotices, paymentNotices, expressPaymentNotices } =
+		useCheckoutNotices();
+>>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 
 	const [ observers, observerDispatch ] = useReducer( emitReducer, {} );
 	const currentObservers = useRef( observers );
@@ -262,11 +266,14 @@ export const CheckoutEventsProvider = ( {
 		previousStatus,
 		previousHasError,
 		createErrorNotice,
+<<<<<<< HEAD
 		isErrorResponse,
 		isFailResponse,
 		isSuccessResponse,
 		shouldRetry,
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+>>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 		checkoutNotices,
 		expressPaymentNotices,
 		paymentNotices,

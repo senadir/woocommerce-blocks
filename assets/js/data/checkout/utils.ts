@@ -11,15 +11,21 @@ import type { createErrorNotice as originalCreateErrorNotice } from '@wordpress/
  * Internal dependencies
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 import {
 	isErrorResponse,
 	isFailResponse,
 	isSuccessResponse,
 	shouldRetry,
 } from '../../base/context/event-emit';
+<<<<<<< HEAD
 =======
 import { useEmitResponse } from '../../base/context/hooks/use-emit-response';
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+>>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 import {
 	CheckoutAndPaymentNotices,
 	CheckoutAfterProcessingWithErrorEventData,
@@ -27,6 +33,7 @@ import {
 import { DispatchFromMap } from '../mapped-types';
 import * as actions from './actions';
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 const {
@@ -41,6 +48,8 @@ const {
 // those functions where needed
 
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+>>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 /**
  * Based on the given observers, create Error Notices where necessary
  * and return the error response of the last registered observer

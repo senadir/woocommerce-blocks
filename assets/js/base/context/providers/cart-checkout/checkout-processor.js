@@ -18,17 +18,24 @@ import { useDispatch, useSelect } from '@wordpress/data';
 import {
 	CHECKOUT_STORE_KEY,
 <<<<<<< HEAD
+<<<<<<< HEAD
 	PAYMENT_STORE_KEY,
+=======
+	PAYMENT_METHOD_DATA_STORE_KEY,
+>>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 	VALIDATION_STORE_KEY,
 } from '@woocommerce/block-data';
 import {
 	getPaymentMethods,
 	getExpressPaymentMethods,
 } from '@woocommerce/blocks-registry';
+<<<<<<< HEAD
 =======
 	VALIDATION_STORE_KEY,
 } from '@woocommerce/block-data';
 >>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
+=======
+>>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 
 /**
  * Internal dependencies
@@ -38,9 +45,12 @@ import { useCheckoutEventsContext } from './checkout-events';
 import { useShippingDataContext } from './shipping';
 import { useCustomerDataContext } from './customer';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { useStoreCart } from '../../hooks/cart/use-store-cart';
 =======
 import { usePaymentMethodDataContext } from './payment-methods';
+=======
+>>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 import { useStoreCart } from '../../hooks/cart/use-store-cart';
 import { useStoreNoticesContext } from '../store-notices';
 >>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
@@ -85,6 +95,10 @@ const CheckoutProcessor = () => {
 	const { shippingErrorStatus } = useShippingDataContext();
 	const { billingAddress, shippingAddress } = useCustomerDataContext();
 	const { cartNeedsPayment, cartNeedsShipping, receiveCart } = useStoreCart();
+<<<<<<< HEAD
+=======
+	const { setIsSuppressed } = useStoreNoticesContext();
+>>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 	const { createErrorNotice, removeNotice } = useDispatch( 'core/notices' );
 
 	const {
@@ -94,14 +108,22 @@ const CheckoutProcessor = () => {
 		currentPaymentStatus,
 		shouldSavePayment,
 	} = useSelect( ( select ) => {
+<<<<<<< HEAD
 		const store = select( PAYMENT_STORE_KEY );
+=======
+		const store = select( PAYMENT_METHOD_DATA_STORE_KEY );
+>>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 
 		return {
 			activePaymentMethod: store.getActivePaymentMethod(),
 			paymentMethodData: store.getPaymentMethodData(),
 			isExpressPaymentMethodActive: store.isExpressPaymentMethodActive(),
 			currentPaymentStatus: store.getCurrentStatus(),
+<<<<<<< HEAD
 			shouldSavePayment: store.getShouldSavePaymentMethod(),
+=======
+			shouldSavePayment: store.shouldSavePaymentMethod(),
+>>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 		};
 	}, [] );
 

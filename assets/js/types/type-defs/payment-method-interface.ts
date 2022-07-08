@@ -5,11 +5,7 @@
 import type PaymentMethodLabel from '@woocommerce/base-components/cart-checkout/payment-method-label';
 import type PaymentMethodIcons from '@woocommerce/base-components/cart-checkout/payment-method-icons';
 import type LoadingMask from '@woocommerce/base-components/loading-mask';
-<<<<<<< HEAD
 import { ValidationInputError } from '@woocommerce/blocks-checkout';
-=======
-import type ValidationInputError from '@woocommerce/base-components/validation-input-error';
->>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 
 /**
  * Internal dependencies
