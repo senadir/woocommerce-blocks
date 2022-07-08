@@ -31,10 +31,14 @@ import {
 	reducer as emitReducer,
 } from './event-emit';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { isErrorResponse, isFailResponse } from '../../../event-emit';
 =======
 import { useEmitResponse } from '../../../hooks/use-emit-response';
 >>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
+=======
+import { isErrorResponse, isFailResponse } from '../../../event-emit';
+>>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 import { removeNoticesByStatus } from '../../../../../utils/notices';
 
 /**
@@ -107,6 +111,7 @@ export const AddToCartFormStateContextProvider = ( {
 	const { createErrorNotice } = useDispatch( 'core/notices' );
 	const { setValidationErrors } = useDispatch( VALIDATION_STORE_KEY );
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	const {
 		isSuccessResponse,
@@ -114,6 +119,8 @@ export const AddToCartFormStateContextProvider = ( {
 		isFailResponse,
 	} = useEmitResponse();
 >>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
+=======
+>>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 
 	/**
 	 * @type {AddToCartFormEventRegistration}

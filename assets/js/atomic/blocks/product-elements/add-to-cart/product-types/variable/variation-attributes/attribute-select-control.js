@@ -6,11 +6,7 @@ import { decodeEntities } from '@wordpress/html-entities';
 import { SelectControl } from 'wordpress-components';
 import { useEffect } from 'react';
 import classnames from 'classnames';
-<<<<<<< HEAD
 import { ValidationInputError } from '@woocommerce/blocks-checkout';
-=======
-import { ValidationInputError } from '@woocommerce/base-components/validation-input-error';
->>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 import { VALIDATION_STORE_KEY } from '@woocommerce/block-data';
 import { useDispatch, useSelect } from '@wordpress/data';
 
@@ -36,10 +32,15 @@ const AttributeSelectControl = ( {
 	),
 } ) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	const { setValidationErrors, clearValidationError } = useDispatch(
 		VALIDATION_STORE_KEY
 	);
+=======
+	const { setValidationErrors, clearValidationError } =
+		useDispatch( VALIDATION_STORE_KEY );
+>>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 
 	const { getValidationError } = useSelect( ( select ) => {
 		const store = select( VALIDATION_STORE_KEY );

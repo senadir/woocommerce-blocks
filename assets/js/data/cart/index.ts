@@ -33,6 +33,10 @@ const registeredStore = registerStore< State >( STORE_KEY, {
 } );
 
 registeredStore.subscribe( pushChanges );
+registeredStore.subscribe( async () => {
+	await checkPaymentMethodsCanPay();
+	await checkPaymentMethodsCanPay( true );
+} );
 
 // First we will run the updatePaymentMethods function without any debounce to ensure payment methods are ready as soon
 // as the cart is loaded. After that, we will unsubscribe this function and instead run the

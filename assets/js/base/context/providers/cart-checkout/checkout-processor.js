@@ -17,7 +17,6 @@ import {
 import { useDispatch, useSelect } from '@wordpress/data';
 import {
 	CHECKOUT_STORE_KEY,
-<<<<<<< HEAD
 	PAYMENT_STORE_KEY,
 	VALIDATION_STORE_KEY,
 } from '@woocommerce/block-data';
@@ -25,10 +24,6 @@ import {
 	getPaymentMethods,
 	getExpressPaymentMethods,
 } from '@woocommerce/blocks-registry';
-=======
-	VALIDATION_STORE_KEY,
-} from '@woocommerce/block-data';
->>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 
 /**
  * Internal dependencies
@@ -37,13 +32,7 @@ import { preparePaymentData, processCheckoutResponseHeaders } from './utils';
 import { useCheckoutEventsContext } from './checkout-events';
 import { useShippingDataContext } from './shipping';
 import { useCustomerDataContext } from './customer';
-<<<<<<< HEAD
 import { useStoreCart } from '../../hooks/cart/use-store-cart';
-=======
-import { usePaymentMethodDataContext } from './payment-methods';
-import { useStoreCart } from '../../hooks/cart/use-store-cart';
-import { useStoreNoticesContext } from '../store-notices';
->>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 
 /**
  * CheckoutProcessor component.
@@ -72,11 +61,7 @@ const CheckoutProcessor = () => {
 		};
 	} );
 
-<<<<<<< HEAD
 	const { __internalSetHasError, __internalProcessCheckoutResponse } =
-=======
-	const { setHasError, processCheckoutResponse } =
->>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 		useDispatch( CHECKOUT_STORE_KEY );
 
 	const hasValidationErrors = useSelect(
@@ -330,13 +315,8 @@ const CheckoutProcessor = () => {
 		cartNeedsShipping,
 		createErrorNotice,
 		receiveCart,
-<<<<<<< HEAD
 		__internalSetHasError,
 		__internalProcessCheckoutResponse,
-=======
-		setHasError,
-		processCheckoutResponse,
->>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 	] );
 
 	// Process order if conditions are good.

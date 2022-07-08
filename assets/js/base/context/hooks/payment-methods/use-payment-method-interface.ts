@@ -11,12 +11,20 @@ import deprecated from '@wordpress/deprecated';
 import LoadingMask from '@woocommerce/base-components/loading-mask';
 import type { PaymentMethodInterface } from '@woocommerce/types';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { useSelect, useDispatch } from '@wordpress/data';
 import { CHECKOUT_STORE_KEY, PAYMENT_STORE_KEY } from '@woocommerce/block-data';
 import { ValidationInputError } from '@woocommerce/blocks-checkout';
 =======
 import { useSelect } from '@wordpress/data';
 import { CHECKOUT_STORE_KEY } from '@woocommerce/block-data';
+=======
+import { useSelect, useDispatch } from '@wordpress/data';
+import {
+	CHECKOUT_STORE_KEY,
+	PAYMENT_METHOD_DATA_STORE_KEY,
+} from '@woocommerce/block-data';
+>>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 import { ValidationInputError } from '@woocommerce/base-components/validation-input-error';
 >>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 
@@ -26,11 +34,15 @@ import { ValidationInputError } from '@woocommerce/base-components/validation-in
 import { useStoreCart } from '../cart/use-store-cart';
 import { useStoreCartCoupons } from '../cart/use-store-cart-coupons';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { noticeContexts, responseTypes } from '../../event-emit';
 import { useCheckoutEventsContext } from '../../providers/cart-checkout/checkout-events';
 import { usePaymentEventsContext } from '../../providers/cart-checkout/payment-events';
 =======
 import { useEmitResponse } from '../use-emit-response';
+=======
+import { noticeContexts, responseTypes } from '../../event-emit';
+>>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 import { useCheckoutEventsContext } from '../../providers/cart-checkout/checkout-events';
 import { usePaymentMethodDataContext } from '../../providers/cart-checkout/payment-methods';
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
@@ -51,6 +63,7 @@ export const usePaymentMethodInterface = (): PaymentMethodInterface => {
 		onSubmit,
 	} = useCheckoutEventsContext();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	const {
 		isCalculating,
@@ -69,6 +82,8 @@ export const usePaymentMethodInterface = (): PaymentMethodInterface => {
 		};
 	} );
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+>>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 
 	const { isCalculating, isComplete, isIdle, isProcessing, customerId } =
 		useSelect( ( select ) => {
@@ -83,7 +98,11 @@ export const usePaymentMethodInterface = (): PaymentMethodInterface => {
 		} );
 	const { paymentStatus, activePaymentMethod, shouldSavePayment } = useSelect(
 		( select ) => {
+<<<<<<< HEAD
 			const store = select( PAYMENT_STORE_KEY );
+=======
+			const store = select( PAYMENT_METHOD_DATA_STORE_KEY );
+>>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 
 			return {
 				// The paymentStatus is exposed to third parties via the payment method interface so the API must not be changed
@@ -103,10 +122,18 @@ export const usePaymentMethodInterface = (): PaymentMethodInterface => {
 		}
 	);
 
+<<<<<<< HEAD
 	const { __internalSetExpressPaymentError } =
 		useDispatch( PAYMENT_STORE_KEY );
 
 	const { onPaymentProcessing } = usePaymentEventsContext();
+=======
+	const { setExpressPaymentError } = useDispatch(
+		PAYMENT_METHOD_DATA_STORE_KEY
+	);
+
+	const { onPaymentProcessing } = usePaymentMethodDataContext();
+>>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 	const {
 		shippingErrorStatus,
 		shippingErrorTypes,
