@@ -22,7 +22,10 @@ import {
 import { CartBlockContext } from './context';
 import './style.scss';
 
-const reloadPage = () => void window.location.reload( true );
+const reloadPage = () => {
+	window.history.replaceState( null, null, window.location.href );
+	window.location.href = window.location.href + '?classic';
+};
 
 const Cart = ( { children, attributes = {} } ) => {
 	const { cartIsLoading } = useStoreCart();

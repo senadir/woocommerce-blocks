@@ -39,7 +39,7 @@ export const ContainerWidthContextProvider = ( {
 	children,
 	className = '',
 } ) => {
-	const [ resizeListener, containerClassName ] = useContainerQueries();
+	const [ ref, containerClassName ] = useContainerQueries();
 
 	const contextValue = {
 		hasContainerWidth: containerClassName !== '',
@@ -55,8 +55,10 @@ export const ContainerWidthContextProvider = ( {
 	 */
 	return (
 		<ContainerWidthContext.Provider value={ contextValue }>
-			<div className={ classNames( className, containerClassName ) }>
-				{ resizeListener }
+			<div
+				className={ classNames( className, containerClassName ) }
+				ref={ ref }
+			>
 				{ children }
 			</div>
 		</ContainerWidthContext.Provider>
