@@ -236,6 +236,7 @@
 		"snakecase-keys": "5.4.2",
 		"trim-html": "0.1.9",
 		"use-debounce": "7.0.1",
+		"use-resize-observer": "^9.0.2",
 		"wordpress-components": "npm:@wordpress/components@14.2.0"
 	},
 	"peerDependencies": {
