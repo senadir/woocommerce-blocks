@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { useResizeObserver } from '@wordpress/compose';
+import useResizeObserver from 'use-resize-observer/polyfilled';
 
 /**
  * Returns a resizeListener element and a class name based on its width.
@@ -29,8 +29,11 @@ import { useResizeObserver } from '@wordpress/compose';
  * };
  * ```
  */
-export const useContainerQueries = (): [ React.ReactElement, string ] => {
-	const [ resizeListener, { width } ] = useResizeObserver();
+export const useContainerQueries = (): [
+	React.RefCallback< Element >,
+	string
+] => {
+	const { ref, width = 0 } = useResizeObserver();
 
 	let className = '';
 	if ( width > 700 ) {
@@ -43,5 +46,5 @@ export const useContainerQueries = (): [ React.ReactElement, string ] => {
 		className = 'is-mobile';
 	}
 
-	return [ resizeListener, className ];
+	return [ ref, className ];
 };
