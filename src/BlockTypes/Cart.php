@@ -82,6 +82,10 @@ class Cart extends AbstractBlock {
 	 * @return string Rendered block type output.
 	 */
 	protected function render( $attributes, $content, $block ) {
+		if ( $this->is_classic_mode() ) {
+			// If the user requested the classic mode, we load the shortcode cart.
+			return '[woocommerce_cart]';
+		}
 		// Deregister core cart scripts and styles.
 		wp_dequeue_script( 'wc-cart' );
 		wp_dequeue_script( 'wc-password-strength-meter' );
@@ -145,6 +149,16 @@ class Cart extends AbstractBlock {
 		}
 
 		return $content;
+	}
+
+	/**
+	 * Check if we're tying to load the shortcode cart.
+	 *
+	 * @return boolean
+	 */
+	protected function is_classic_mode() {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
+		return isset( $_GET['classic'] );
 	}
 
 	/**
