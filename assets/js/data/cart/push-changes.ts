@@ -7,6 +7,7 @@ import {
 	formatStoreApiErrorMessage,
 	pluckAddress,
 	pluckEmail,
+	pluckPhone,
 } from '@woocommerce/base-utils';
 import {
 	CartResponseBillingAddress,
@@ -46,6 +47,13 @@ const isAddressDirty = <
 	// An object containing all address information.
 	address: T
 ): boolean => {
+	if (
+		isCartResponseBillingAddress( address ) &&
+		pluckPhone( address ) !==
+			pluckPhone( previousAddress as CartResponseBillingAddress )
+	) {
+		return true;
+	}
 	if (
 		isCartResponseBillingAddress( address ) &&
 		pluckEmail( address ) !==
