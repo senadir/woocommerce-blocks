@@ -9,6 +9,20 @@ import type {
 } from '@woocommerce/types';
 import { defaultAddressFields, EnteredAddress } from '@woocommerce/settings';
 
+const PHONE_REGEXP =
+	/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/i;
+
+/**
+ * Determines whether the given string looks like a phone number.
+ *
+ * @param {string} phone The string to scrutinise.
+ *
+ * @return {boolean} Whether or not it looks like a phone number.
+ */
+function isPhone( phone ) {
+	return PHONE_REGEXP.test( phone );
+}
+
 /**
  * Compare two addresses and see if they are the same.
  */
@@ -63,6 +77,18 @@ export const pluckEmail = ( {
 	email = '',
 }: CartResponseBillingAddress ): string =>
 	isEmail( email ) ? email.trim() : '';
+
+/**
+ * pluckPhone takes a full address object and returns only the phone number, if set and valid. Otherwise returns an empty string.
+ *
+ * @param {Object} address       An object containing all address information
+ * @param {string} address.phone The email address.
+ * @return {string} The email address.
+ */
+export const pluckPhone = ( {
+	phone = '',
+}: CartResponseBillingAddress ): string =>
+	isPhone( phone ) ? phone.trim() : '';
 
 /**
  * Type-guard.
