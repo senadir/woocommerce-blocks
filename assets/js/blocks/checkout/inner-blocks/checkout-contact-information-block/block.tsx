@@ -23,17 +23,10 @@ const Block = ( {
 	allowCreateAccount: boolean;
 	phoneAsPrimary: boolean;
 } ): JSX.Element => {
-	const {
-		customerId,
-		shouldCreateAccount,
-		setShouldCreateAccount,
-	} = useCheckoutContext();
-	const {
-		billingAddress,
-		setEmail,
-		setBillingPhone,
-		setShippingPhone,
-	} = useCheckoutAddress();
+	const { customerId, shouldCreateAccount, setShouldCreateAccount } =
+		useCheckoutContext();
+	const { billingAddress, setEmail, setBillingPhone, setShippingPhone } =
+		useCheckoutAddress();
 	const { dispatchCheckoutEvent } = useStoreEvents();
 	const onChangeEmail = ( value ) => {
 		setEmail( value );
