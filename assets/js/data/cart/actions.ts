@@ -400,8 +400,7 @@ export function* removeItemFromCart(
  */
 export function* changeCartItemQuantity(
 	cartItemKey: string,
-	quantity: number,
-	signal: AbortSignal
+	quantity: number
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any -- unclear how to represent multiple different yields as type
 ): Generator< unknown, void, any > {
 	const cartItem = yield controls.resolveSelect(
@@ -422,7 +421,6 @@ export function* changeCartItemQuantity(
 				quantity,
 			},
 			cache: 'no-store',
-			signal,
 		} );
 
 		yield receiveCart( response );
@@ -443,12 +441,10 @@ export function* changeCartItemQuantity(
  * @param {string}          rateId      The id of the rate being selected.
  * @param {number | string} [packageId] The key of the packages that we will
  *                                      select within.
- * @param {AbortSignal}     signal      AbortController singal to cancel inflight calls.
  */
 export function* selectShippingRate(
 	rateId: string,
-	packageId = 0,
-	signal: AbortSignal
+	packageId = 0
 ): Generator< unknown, boolean, { response: CartResponse } > {
 	try {
 		yield shippingRatesBeingSelected( true );
@@ -460,7 +456,6 @@ export function* selectShippingRate(
 				rate_id: rateId,
 			},
 			cache: 'no-store',
-			signal,
 		} );
 
 		yield receiveCart( response );
