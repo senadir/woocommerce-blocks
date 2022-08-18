@@ -1,7 +1,6 @@
 /**
  * External dependencies
  */
-import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { useState, useEffect } from '@wordpress/element';
 import Button from '@woocommerce/base-components/button';
@@ -22,9 +21,11 @@ import './style.scss';
 const Block = ( {
 	checkoutPageId,
 	className,
+	label,
 }: {
 	checkoutPageId: number;
 	className: string;
+	label: string;
 } ): JSX.Element => {
 	const link = getSetting( 'page-' + checkoutPageId, false );
 	const isCalculating = useSelect( ( select ) =>
@@ -67,7 +68,7 @@ const Block = ( {
 			onClick={ () => setShowSpinner( true ) }
 			showSpinner={ showSpinner }
 		>
-			{ __( 'Proceed to Checkout', 'woo-gutenberg-products-block' ) }
+			{ label }
 		</Button>
 	);
 

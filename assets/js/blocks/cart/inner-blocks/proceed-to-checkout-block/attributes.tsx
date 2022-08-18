@@ -10,4 +10,8 @@ export default {
 			remove: true,
 		},
 	},
+	label: {
+		type: 'string',
+		default: 'Proceed to Checkout',
+	},
 };
