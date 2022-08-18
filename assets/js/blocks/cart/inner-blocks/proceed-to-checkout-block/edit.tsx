@@ -1,17 +1,23 @@
 /**
  * External dependencies
  */
+import classnames from 'classnames';
+import Button from '@woocommerce/base-components/button';
 import { useRef } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
-import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
+import {
+	InspectorControls,
+	useBlockProps,
+	PlainText,
+} from '@wordpress/block-editor';
 import PageSelector from '@woocommerce/editor-components/page-selector';
 import { CART_PAGE_ID } from '@woocommerce/block-settings';
-import Noninteractive from '@woocommerce/base-components/noninteractive';
 /**
  * Internal dependencies
  */
-import Block from './block';
+import './editor.scss';
+
 export const Edit = ( {
 	attributes,
 	setAttributes,
@@ -19,11 +25,12 @@ export const Edit = ( {
 	attributes: {
 		checkoutPageId: number;
 		className: string;
+		label: string;
 	};
 	setAttributes: ( attributes: Record< string, unknown > ) => void;
 } ): JSX.Element => {
 	const blockProps = useBlockProps();
-	const { checkoutPageId = 0, className } = attributes;
+	const { checkoutPageId = 0, className, label } = attributes;
 	const { current: savedCheckoutPageId } = useRef( checkoutPageId );
 	const currentPostId = useSelect(
 		( select ) => {
@@ -60,12 +67,22 @@ export const Edit = ( {
 					/>
 				) }
 			</InspectorControls>
-			<Noninteractive>
-				<Block
-					checkoutPageId={ checkoutPageId }
-					className={ className }
+			<Button
+				className={ classnames(
+					'wc-block-cart__submit-button',
+					className
+				) }
+			>
+				<PlainText
+					className="wc-block-cart__plaintext"
+					value={ label }
+					onChange={ ( value ) =>
+						setAttributes( {
+							label: value,
+						} )
+					}
 				/>
-			</Noninteractive>
+			</Button>
 		</div>
 	);
 };
