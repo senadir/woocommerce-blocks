@@ -161,7 +161,7 @@ class DraftOrders {
 		$this->ensure_draft_status_registered();
 		$orders = wc_get_orders(
 			[
-				'date_modified' => '<=' . strtotime( '-1 DAY' ),
+				'date_modified' => '<=' . strtotime( '-5 DAY' ),
 				'limit'         => $batch_size,
 				'status'        => self::DB_STATUS,
 				'type'          => 'shop_order',
