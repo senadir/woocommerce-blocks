@@ -33,21 +33,27 @@ const AttributeSelectControl = ( {
 } ) => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	const { setValidationErrors, clearValidationError } = useDispatch(
 		VALIDATION_STORE_KEY
 	);
 =======
+=======
+	const errorId = attributeName;
+
+>>>>>>> 257114e23 (Refactor `getValidationError` and `getValidationErrorId` selectors in `wc/store/validation` data store (#7146))
 	const { setValidationErrors, clearValidationError } =
 		useDispatch( VALIDATION_STORE_KEY );
 >>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 
-	const { getValidationError } = useSelect( ( select ) => {
+	const { error } = useSelect( ( select ) => {
 		const store = select( VALIDATION_STORE_KEY );
 		return {
-			getValidationError: store.getValidationError(),
+			error: store.getValidationError( errorId ) || {},
 		};
 	} );
+<<<<<<< HEAD
 >>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 	const errorId = attributeName;
 
@@ -60,6 +66,8 @@ const AttributeSelectControl = ( {
 			error: store.getValidationError( errorId ) || {},
 		};
 	} );
+=======
+>>>>>>> 257114e23 (Refactor `getValidationError` and `getValidationErrorId` selectors in `wc/store/validation` data store (#7146))
 
 	useEffect( () => {
 		if ( value ) {

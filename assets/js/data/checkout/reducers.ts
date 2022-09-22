@@ -1,6 +1,10 @@
 /**
  * External dependencies
  */
+<<<<<<< HEAD
+=======
+import type { Reducer } from 'redux';
+>>>>>>> 257114e23 (Refactor `getValidationError` and `getValidationErrorId` selectors in `wc/store/validation` data store (#7146))
 import { PaymentResult } from '@woocommerce/types';
 
 /**

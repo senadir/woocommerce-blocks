@@ -97,11 +97,15 @@ const AddressForm = ( {
 }: AddressFormProps ): JSX.Element => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 257114e23 (Refactor `getValidationError` and `getValidationErrorId` selectors in `wc/store/validation` data store (#7146))
 	const validationErrorId = 'shipping-missing-country';
 	const { setValidationErrors, clearValidationError } =
 		useDispatch( VALIDATION_STORE_KEY );
 
 	const countryValidationError = useSelect( ( select ) => {
+<<<<<<< HEAD
 		const store = select( VALIDATION_STORE_KEY );
 		return store.getValidationError( validationErrorId );
 =======
@@ -117,6 +121,10 @@ const AddressForm = ( {
 		const store = select( VALIDATION_STORE_KEY );
 		return store.getValidationError();
 >>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
+=======
+		const store = select( VALIDATION_STORE_KEY );
+		return store.getValidationError( validationErrorId );
+>>>>>>> 257114e23 (Refactor `getValidationError` and `getValidationErrorId` selectors in `wc/store/validation` data store (#7146))
 	} );
 
 	const currentFields = useShallowEqual( fields );

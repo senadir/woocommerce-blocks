@@ -57,6 +57,7 @@ export const TotalsCoupon = ( {
 	const [ couponValue, setCouponValue ] = useState( '' );
 	const currentIsLoading = useRef( false );
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	const validationErrorKey = 'coupon';
 	const textInputId = `wc-block-components-totals-coupon__input-${ instanceId }`;
@@ -81,6 +82,19 @@ export const TotalsCoupon = ( {
 
 	const validationError = getValidationError( 'coupon' );
 >>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
+=======
+
+	const validationErrorKey = 'coupon';
+	const textInputId = `wc-block-components-totals-coupon__input-${ instanceId }`;
+
+	const { validationError, validationErrorId } = useSelect( ( select ) => {
+		const store = select( VALIDATION_STORE_KEY );
+		return {
+			validationError: store.getValidationError( validationErrorKey ),
+			validationErrorId: store.getValidationErrorId( textInputId ),
+		};
+	} );
+>>>>>>> 257114e23 (Refactor `getValidationError` and `getValidationErrorId` selectors in `wc/store/validation` data store (#7146))
 
 	useEffect( () => {
 		if ( currentIsLoading.current !== isLoading ) {
