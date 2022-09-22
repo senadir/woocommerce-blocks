@@ -59,6 +59,7 @@ const Combobox = ( {
 	autoComplete = 'off',
 }: ComboboxProps ): JSX.Element => {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	const { setValidationErrors, clearValidationError } = useDispatch(
 		VALIDATION_STORE_KEY
@@ -69,6 +70,8 @@ const Combobox = ( {
 	} );
 
 >>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
+=======
+>>>>>>> 257114e23 (Refactor `getValidationError` and `getValidationErrorId` selectors in `wc/store/validation` data store (#7146))
 	const controlRef = useRef< HTMLDivElement >( null );
 	const controlId = id || 'control-' + instanceId;
 	const errorId = incomingErrorId || controlId;

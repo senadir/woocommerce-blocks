@@ -17,23 +17,34 @@ export const useValidation = (): ValidationData => {
 	const { clearValidationError, hideValidationError, setValidationErrors } =
 		useDispatch( VALIDATION_STORE_KEY );
 
+<<<<<<< HEAD
 =======
 	const {
 		clearValidationError,
 		hideValidationError,
 		setValidationErrors,
 	} = useDispatch( VALIDATION_STORE_KEY );
+=======
+	const prefix = 'extensions-errors';
+
+>>>>>>> 257114e23 (Refactor `getValidationError` and `getValidationErrorId` selectors in `wc/store/validation` data store (#7146))
 	const { hasValidationErrors, getValidationError } = useSelect(
-		( select ) => {
-			const store = select( VALIDATION_STORE_KEY );
+		( mapSelect ) => {
+			const store = mapSelect( VALIDATION_STORE_KEY );
 			return {
-				hasValidationErrors: store.hasValidationErrors,
-				getValidationError: store.getValidationError(),
+				hasValidationErrors: store.hasValidationErrors(),
+				getValidationError: ( validationErrorId: string ) =>
+					store.getValidationError(
+						`${ prefix }-${ validationErrorId }`
+					),
 			};
 		}
 	);
+<<<<<<< HEAD
 >>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 	const prefix = 'extensions-errors';
+=======
+>>>>>>> 257114e23 (Refactor `getValidationError` and `getValidationErrorId` selectors in `wc/store/validation` data store (#7146))
 
 	const { hasValidationErrors, getValidationError } = useSelect(
 		( mapSelect ) => {
@@ -50,6 +61,7 @@ export const useValidation = (): ValidationData => {
 
 	return {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		hasValidationErrors,
 		getValidationError,
 =======
@@ -60,6 +72,10 @@ export const useValidation = (): ValidationData => {
 			[ getValidationError ]
 		),
 >>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
+=======
+		hasValidationErrors,
+		getValidationError,
+>>>>>>> 257114e23 (Refactor `getValidationError` and `getValidationErrorId` selectors in `wc/store/validation` data store (#7146))
 		clearValidationError: useCallback(
 			( validationErrorId: string ) =>
 				clearValidationError( `${ prefix }-${ validationErrorId }` ),

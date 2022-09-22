@@ -17,12 +17,16 @@ describe( 'Validation selectors', () => {
 			},
 		};
 <<<<<<< HEAD
+<<<<<<< HEAD
 		const validationError = getValidationError( state, 'validationError' );
 =======
 		const validationError = getValidationError( state )(
 			'validationError'
 		);
 >>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
+=======
+		const validationError = getValidationError( state, 'validationError' );
+>>>>>>> 257114e23 (Refactor `getValidationError` and `getValidationErrorId` selectors in `wc/store/validation` data store (#7146))
 		expect( validationError ).toEqual( {
 			message: 'This is a test message',
 			hidden: false,
@@ -37,11 +41,16 @@ describe( 'Validation selectors', () => {
 			},
 		};
 <<<<<<< HEAD
+<<<<<<< HEAD
 		const validationErrorID = getValidationErrorId(
 			state,
 =======
 		const validationErrorID = getValidationErrorId( state )(
 >>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
+=======
+		const validationErrorID = getValidationErrorId(
+			state,
+>>>>>>> 257114e23 (Refactor `getValidationError` and `getValidationErrorId` selectors in `wc/store/validation` data store (#7146))
 			'validationError'
 		);
 		expect( validationErrorID ).toEqual( `validate-error-validationError` );
