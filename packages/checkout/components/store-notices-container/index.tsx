@@ -1,6 +1,8 @@
 /**
  * External dependencies
  */
+import PropTypes from 'prop-types';
+import { useDispatch, useSelect } from '@wordpress/data';
 import classnames from 'classnames';
 import { Notice } from 'wordpress-components';
 import { sanitizeHTML } from '@woocommerce/utils';
@@ -12,6 +14,15 @@ import type { Notice as NoticeType } from '@wordpress/notices';
  * Internal dependencies
  */
 import './style.scss';
+
+const ALLOWED_TAGS = [ 'a', 'b', 'em', 'i', 'strong', 'p', 'br' ];
+const ALLOWED_ATTR = [ 'target', 'href', 'rel', 'name', 'download' ];
+
+const sanitizeHTML = ( html ) => {
+	return {
+		__html: sanitize( html, { ALLOWED_TAGS, ALLOWED_ATTR } ),
+	};
+};
 
 const getWooClassName = ( { status = 'default' } ) => {
 	switch ( status ) {
