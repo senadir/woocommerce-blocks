@@ -6,11 +6,7 @@ import { __ } from '@wordpress/i18n';
 import { useEffect, useRef } from '@wordpress/element';
 import { withInstanceId } from '@wordpress/compose';
 import { ComboboxControl } from 'wordpress-components';
-<<<<<<< HEAD
 import { ValidationInputError } from '@woocommerce/blocks-checkout';
-=======
-import { ValidationInputError } from '@woocommerce/base-components/validation-input-error';
->>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 import { isObject } from '@woocommerce/types';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { VALIDATION_STORE_KEY } from '@woocommerce/block-data';

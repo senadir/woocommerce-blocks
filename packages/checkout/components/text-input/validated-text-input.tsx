@@ -2,7 +2,6 @@
  * External dependencies
  */
 import { __ } from '@wordpress/i18n';
-<<<<<<< HEAD:packages/checkout/components/text-input/validated-text-input.tsx
 import {
 	useCallback,
 	useRef,
@@ -14,13 +13,6 @@ import classnames from 'classnames';
 import { withInstanceId } from '@wordpress/compose';
 import { isObject, isString } from '@woocommerce/types';
 import { useDispatch, useSelect } from '@wordpress/data';
-=======
-import { useCallback, useRef, useEffect, useState } from 'react';
-import classnames from 'classnames';
-import { withInstanceId } from '@wordpress/compose';
-import { isString } from '@woocommerce/types';
-import { dispatch, useSelect } from '@wordpress/data';
->>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402)):assets/js/base/components/text-input/validated-text-input.tsx
 import { VALIDATION_STORE_KEY } from '@woocommerce/block-data';
 
 /**
@@ -30,7 +22,6 @@ import TextInput from './text-input';
 import './style.scss';
 import { ValidationInputError } from '../validation-input-error';
 
-<<<<<<< HEAD:packages/checkout/components/text-input/validated-text-input.tsx
 interface ValidatedTextInputProps
 	extends Omit<
 		InputHTMLAttributes< HTMLInputElement >,
@@ -40,13 +31,6 @@ interface ValidatedTextInputProps
 	instanceId: string;
 	className?: string | undefined;
 	ariaDescribedBy?: string | undefined;
-=======
-interface ValidatedTextInputProps {
-	id?: string;
-	instanceId: string;
-	className?: string;
-	ariaDescribedBy?: string;
->>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402)):assets/js/base/components/text-input/validated-text-input.tsx
 	errorId?: string;
 	focusOnMount?: boolean;
 	showError?: boolean;
@@ -73,11 +57,7 @@ const ValidatedTextInput = ( {
 	const inputRef = useRef< HTMLInputElement >( null );
 
 	const { setValidationErrors, hideValidationError, clearValidationError } =
-<<<<<<< HEAD:packages/checkout/components/text-input/validated-text-input.tsx
 		useDispatch( VALIDATION_STORE_KEY );
-=======
-		dispatch( VALIDATION_STORE_KEY );
->>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402)):assets/js/base/components/text-input/validated-text-input.tsx
 	const textInputId =
 		typeof id !== 'undefined' ? id : 'textinput-' + instanceId;
 	const errorIdString = errorId !== undefined ? errorId : textInputId;

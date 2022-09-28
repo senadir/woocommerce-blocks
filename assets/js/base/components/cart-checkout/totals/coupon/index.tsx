@@ -4,7 +4,6 @@
 import { __ } from '@wordpress/i18n';
 import { useState, useEffect, useRef } from '@wordpress/element';
 import Button from '@woocommerce/base-components/button';
-<<<<<<< HEAD
 import Label from '@woocommerce/base-components/label';
 import LoadingMask from '@woocommerce/base-components/loading-mask';
 import { withInstanceId } from '@wordpress/compose';
@@ -13,14 +12,6 @@ import {
 	ValidatedTextInput,
 	ValidationInputError,
 } from '@woocommerce/blocks-checkout';
-=======
-import { Panel } from '@woocommerce/blocks-checkout';
-import Label from '@woocommerce/base-components/label';
-import LoadingMask from '@woocommerce/base-components/loading-mask';
-import { withInstanceId } from '@wordpress/compose';
-import { ValidatedTextInput } from '@woocommerce/base-components/text-input';
-import ValidationInputError from '@woocommerce/base-components/validation-input-error';
->>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 import { useSelect } from '@wordpress/data';
 import { VALIDATION_STORE_KEY } from '@woocommerce/block-data';
 
