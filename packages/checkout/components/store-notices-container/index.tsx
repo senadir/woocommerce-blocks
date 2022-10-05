@@ -15,15 +15,6 @@ import type { Notice as NoticeType } from '@wordpress/notices';
  */
 import './style.scss';
 
-const ALLOWED_TAGS = [ 'a', 'b', 'em', 'i', 'strong', 'p', 'br' ];
-const ALLOWED_ATTR = [ 'target', 'href', 'rel', 'name', 'download' ];
-
-const sanitizeHTML = ( html ) => {
-	return {
-		__html: sanitize( html, { ALLOWED_TAGS, ALLOWED_ATTR } ),
-	};
-};
-
 const getWooClassName = ( { status = 'default' } ) => {
 	switch ( status ) {
 		case 'error':
