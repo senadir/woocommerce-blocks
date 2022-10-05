@@ -133,6 +133,9 @@ export const CheckoutEventsProvider = ( {
 
 	if ( redirectUrl && redirectUrl !== checkoutState.redirectUrl ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 		checkoutActions.__internalSetRedirectUrl( redirectUrl );
 	}
 
@@ -207,10 +210,14 @@ export const CheckoutEventsProvider = ( {
 	useEffect( () => {
 		if ( checkoutState.status === STATUS.BEFORE_PROCESSING ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			checkoutActions.__internalEmitValidateEvent( {
 =======
 			checkoutActions.emitValidateEvent( {
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+			checkoutActions.__internalEmitValidateEvent( {
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 				observers: currentObservers.current,
 				setValidationErrors,
 			} );
@@ -237,10 +244,14 @@ export const CheckoutEventsProvider = ( {
 
 		if ( checkoutState.status === STATUS.AFTER_PROCESSING ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			checkoutActions.__internalEmitAfterProcessingEvents( {
 =======
 			checkoutActions.emitAfterProcessingEvents( {
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+			checkoutActions.__internalEmitAfterProcessingEvents( {
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 				observers: currentObservers.current,
 				notices: {
 					checkoutNotices,
@@ -283,12 +294,16 @@ export const CheckoutEventsProvider = ( {
 	const onSubmit = useCallback( () => {
 		dispatchCheckoutEvent( 'submit' );
 <<<<<<< HEAD
+<<<<<<< HEAD
 		checkoutActions.__internalSetBeforeProcessing();
 	}, [ dispatchCheckoutEvent, checkoutActions ] );
 
 	const checkoutEventHandlers = {
 =======
 		checkoutActions.setBeforeProcessing();
+=======
+		checkoutActions.__internalSetBeforeProcessing();
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 	}, [ dispatchCheckoutEvent, checkoutActions ] );
 
 	const checkoutEventHandlers: CheckoutEventsContextType = {

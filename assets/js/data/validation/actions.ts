@@ -21,32 +21,46 @@ export const clearValidationError = ( error: string ) => ( {
 	error,
 } );
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
+=======
+
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 export const hideValidationError = ( error: string ) => ( {
 	type: types.HIDE_VALIDATION_ERROR,
 	error,
 } );
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
+=======
+
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 export const showValidationError = ( error: string ) => ( {
 	type: types.SHOW_VALIDATION_ERROR,
 	error,
 } );
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 
 export const showAllValidationErrors = () => ( {
 	type: types.SHOW_ALL_VALIDATION_ERRORS,
 } );
 
+<<<<<<< HEAD
 =======
 export const showAllValidationErrors = () => ( {
 	type: types.SHOW_ALL_VALIDATION_ERRORS,
 } );
 >>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
+=======
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 export type ValidationAction = ReturnOrGeneratorYieldUnion<
 	| typeof setValidationErrors
 	| typeof clearAllValidationErrors

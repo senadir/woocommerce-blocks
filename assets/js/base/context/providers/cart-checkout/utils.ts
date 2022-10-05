@@ -33,10 +33,14 @@ export const preparePaymentData = (
  */
 export const processCheckoutResponseHeaders = ( headers: Headers ): void => {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const { __internalSetCustomerId } = dispatch( CHECKOUT_STORE_KEY );
 =======
 	const { setCustomerId } = dispatch( CHECKOUT_STORE_KEY );
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+	const { __internalSetCustomerId } = dispatch( CHECKOUT_STORE_KEY );
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 	if (
 		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-ignore -- this does exist because it's monkey patched in

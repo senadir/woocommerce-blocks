@@ -31,18 +31,25 @@ import * as actions from './actions';
  * and change the status to AFTER_PROCESSING
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 export const __internalProcessCheckoutResponse = (
 	response: CheckoutResponse
 ) => {
 =======
 export const processCheckoutResponse = ( response: CheckoutResponse ) => {
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+export const __internalProcessCheckoutResponse = (
+	response: CheckoutResponse
+) => {
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 	return ( {
 		dispatch,
 	}: {
 		dispatch: DispatchFromMap< typeof actions >;
 	} ) => {
 		const paymentResult = getPaymentResultFromCheckoutResponse( response );
+<<<<<<< HEAD
 <<<<<<< HEAD
 		dispatch.__internalSetRedirectUrl( paymentResult?.redirectUrl || '' );
 		dispatch.__internalSetPaymentResult( paymentResult );
@@ -52,6 +59,11 @@ export const processCheckoutResponse = ( response: CheckoutResponse ) => {
 		dispatch.setProcessingResponse( paymentResult );
 		dispatch.setAfterProcessing();
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+		dispatch.__internalSetRedirectUrl( paymentResult?.redirectUrl || '' );
+		dispatch.__internalSetPaymentResult( paymentResult );
+		dispatch.__internalSetAfterProcessing();
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 	};
 };
 
@@ -60,10 +72,14 @@ export const processCheckoutResponse = ( response: CheckoutResponse ) => {
  * registered observers
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 export const __internalEmitValidateEvent: emitValidateEventType = ( {
 =======
 export const emitValidateEvent: emitValidateEventType = ( {
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+export const __internalEmitValidateEvent: emitValidateEventType = ( {
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 	observers,
 	setValidationErrors, // TODO: Fix this type after we move to validation store
 } ) => {
@@ -87,6 +103,7 @@ export const emitValidateEvent: emitValidateEventType = ( {
 					);
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 				dispatch.__internalSetIdle();
 				dispatch.__internalSetHasError();
 			} else {
@@ -97,6 +114,12 @@ export const emitValidateEvent: emitValidateEventType = ( {
 			} else {
 				dispatch.setProcessing();
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+				dispatch.__internalSetIdle();
+				dispatch.__internalSetHasError();
+			} else {
+				dispatch.__internalSetProcessing();
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 			}
 		} );
 	};
@@ -108,6 +131,9 @@ export const emitValidateEvent: emitValidateEventType = ( {
  * to the observer responses
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 export const __internalEmitAfterProcessingEvents: emitAfterProcessingEventsType =
 	( { observers, notices } ) => {
 		return ( { select, dispatch, registry } ) => {
@@ -149,6 +175,7 @@ export const __internalEmitAfterProcessingEvents: emitAfterProcessingEventsType 
 					} );
 				} );
 			}
+<<<<<<< HEAD
 		};
 	};
 =======
@@ -165,36 +192,12 @@ export const emitAfterProcessingEvents: emitAfterProcessingEventsType = ( {
 			customerId: state.customerId,
 			orderNotes: state.orderNotes,
 			processingResponse: state.processingResponse,
+=======
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 		};
-		if ( state.hasError ) {
-			// allow payment methods or other things to customize the error
-			// with a fallback if nothing customizes it.
-			emitEventWithAbort(
-				observers,
-				EVENTS.CHECKOUT_AFTER_PROCESSING_WITH_ERROR,
-				data
-			).then( ( observerResponses ) => {
-				runCheckoutAfterProcessingWithErrorObservers( {
-					observerResponses,
-					notices,
-					dispatch,
-					createErrorNotice,
-					data,
-				} );
-			} );
-		} else {
-			emitEventWithAbort(
-				observers,
-				EVENTS.CHECKOUT_AFTER_PROCESSING_WITH_SUCCESS,
-				data
-			).then( ( observerResponses: unknown[] ) => {
-				runCheckoutAfterProcessingWithSuccessObservers( {
-					observerResponses,
-					dispatch,
-					createErrorNotice,
-				} );
-			} );
-		}
 	};
+<<<<<<< HEAD
 };
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))

@@ -8,12 +8,6 @@ import { PaymentResult } from '@woocommerce/types';
  */
 import { ACTION_TYPES as types } from './action-types';
 import { ReturnOrGeneratorYieldUnion } from '../mapped-types';
-<<<<<<< HEAD
-=======
-
-// `Thunks are functions that can be dispatched, similar to actions creators
-export * from './thunks';
->>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 
 // `Thunks are functions that can be dispatched, similar to actions creators
 export * from './thunks';
@@ -83,9 +77,12 @@ export const __internalSetPaymentResult = ( data: PaymentResult ) => ( {
  * @param  hasError Wether the checkout has an error or not
  */
 export const __internalSetHasError = ( hasError = true ) => ( {
+<<<<<<< HEAD
 =======
 export const setHasError = ( hasError = true ) => ( {
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 	type: types.SET_HAS_ERROR,
 	hasError,
 } );

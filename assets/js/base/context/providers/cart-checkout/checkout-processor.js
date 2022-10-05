@@ -83,10 +83,14 @@ const CheckoutProcessor = () => {
 	} );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const { __internalSetHasError, __internalProcessCheckoutResponse } =
 =======
 	const { setHasError, processCheckoutResponse } =
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+	const { __internalSetHasError, __internalProcessCheckoutResponse } =
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 		useDispatch( CHECKOUT_STORE_KEY );
 
 	const hasValidationErrors = useSelect(
@@ -355,12 +359,17 @@ const CheckoutProcessor = () => {
 		createErrorNotice,
 		receiveCart,
 <<<<<<< HEAD
+<<<<<<< HEAD
 		__internalSetHasError,
 		__internalProcessCheckoutResponse,
 =======
 		setHasError,
 		processCheckoutResponse,
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+		__internalSetHasError,
+		__internalProcessCheckoutResponse,
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 	] );
 
 	// Process order if conditions are good.
