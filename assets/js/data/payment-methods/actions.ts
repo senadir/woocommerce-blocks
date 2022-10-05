@@ -76,7 +76,7 @@ export const setPaymentMethodData = (
  * Set the available payment methods.
  * An available payment method is one that has been validated and can make a payment.
  */
-export const setAvailablePaymentMethods = (
+export const __internalSetAvailablePaymentMethods = (
 	paymentMethods: PaymentMethods
 ) => {
 	return async ( { dispatch } ) => {
@@ -93,7 +93,7 @@ export const setAvailablePaymentMethods = (
  * Set the available express payment methods.
  * An available payment method is one that has been validated and can make a payment.
  */
-export const setAvailableExpressPaymentMethods = (
+export const __internalSetAvailableExpressPaymentMethods = (
 	paymentMethods: ExpressPaymentMethods
 ) => ( {
 	type: ACTION_TYPES.SET_AVAILABLE_EXPRESS_PAYMENT_METHODS,
@@ -104,7 +104,7 @@ export const setAvailableExpressPaymentMethods = (
  * Remove a payment method name from the available payment methods.
  * This is called when a payment method is removed from the registry.
  */
-export const removeAvailablePaymentMethod = ( name: string ) => ( {
+export const __internalRemoveAvailablePaymentMethod = ( name: string ) => ( {
 	type: ACTION_TYPES.REMOVE_AVAILABLE_PAYMENT_METHOD,
 	name,
 } );
@@ -113,7 +113,9 @@ export const removeAvailablePaymentMethod = ( name: string ) => ( {
  * Remove an express payment method name from the available payment methods.
  * This is called when an express payment method is removed from the registry.
  */
-export const removeRegisteredExpressPaymentMethod = ( name: string ) => ( {
+export const __internalRemoveAvailableExpressPaymentMethod = (
+	name: string
+) => ( {
 	type: ACTION_TYPES.REMOVE_AVAILABLE_EXPRESS_PAYMENT_METHOD,
 	name,
 } );

@@ -25,6 +25,7 @@ const Block = ( {
 } ): JSX.Element => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const { customerId, shouldCreateAccount } = useSelect( ( select ) =>
 		select( CHECKOUT_STORE_KEY ).getCheckoutState()
 	);
@@ -41,6 +42,11 @@ const Block = ( {
 		useSelect( ( select ) =>
 			select( CHECKOUT_STORE_KEY ).getCheckoutState()
 		);
+=======
+	const { customerId, shouldCreateAccount } = useSelect( ( select ) =>
+		select( CHECKOUT_STORE_KEY ).getCheckoutState()
+	);
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 	const { setShouldCreateAccount } = useDispatch( CHECKOUT_STORE_KEY );
 	const { billingAddress, setEmail, setBillingPhone, setShippingPhone } =
 		useCheckoutAddress();

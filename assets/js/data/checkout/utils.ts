@@ -108,6 +108,7 @@ export const runCheckoutAfterProcessingWithErrorObservers = ( {
 		// irrecoverable error so set complete
 		if ( ! shouldRetry( errorResponse ) ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dispatch.__internalSetComplete( errorResponse );
 		} else {
 			dispatch.__internalSetIdle();
@@ -116,6 +117,11 @@ export const runCheckoutAfterProcessingWithErrorObservers = ( {
 		} else {
 			dispatch.setIdle();
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+			dispatch.__internalSetComplete( errorResponse );
+		} else {
+			dispatch.__internalSetIdle();
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 		}
 	} else {
 		const hasErrorNotices =
@@ -144,10 +150,14 @@ export const runCheckoutAfterProcessingWithErrorObservers = ( {
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dispatch.__internalSetIdle();
 =======
 		dispatch.setIdle();
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+		dispatch.__internalSetIdle();
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 	}
 };
 
@@ -181,10 +191,14 @@ export const runCheckoutAfterProcessingWithSuccessObservers = ( {
 
 	if ( successResponse && ! errorResponse ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		dispatch.__internalSetComplete( successResponse );
 =======
 		dispatch.setComplete( successResponse );
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+		dispatch.__internalSetComplete( successResponse );
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 	} else if ( isObject( errorResponse ) ) {
 		if ( errorResponse.message && isString( errorResponse.message ) ) {
 			const errorOptions =
@@ -198,14 +212,19 @@ export const runCheckoutAfterProcessingWithSuccessObservers = ( {
 		}
 		if ( ! shouldRetry( errorResponse ) ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			dispatch.__internalSetComplete( errorResponse );
 =======
 			dispatch.setComplete( errorResponse );
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+			dispatch.__internalSetComplete( errorResponse );
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 		} else {
 			// this will set an error which will end up
 			// triggering the onCheckoutAfterProcessingWithError emitter.
 			// and then setting checkout to IDLE state.
+<<<<<<< HEAD
 <<<<<<< HEAD
 			dispatch.__internalSetHasError( true );
 		}
@@ -219,6 +238,13 @@ export const runCheckoutAfterProcessingWithSuccessObservers = ( {
 		// nothing hooked in had any response type so let's just consider successful.
 		dispatch.setComplete();
 >>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
+=======
+			dispatch.__internalSetHasError( true );
+		}
+	} else {
+		// nothing hooked in had any response type so let's just consider successful.
+		dispatch.__internalSetComplete();
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 	}
 };
 

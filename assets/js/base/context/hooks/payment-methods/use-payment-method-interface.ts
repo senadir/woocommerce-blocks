@@ -123,12 +123,16 @@ export const usePaymentMethodInterface = (): PaymentMethodInterface => {
 	);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	const { __internalSetExpressPaymentError } =
 		useDispatch( PAYMENT_STORE_KEY );
 
 	const { onPaymentProcessing } = usePaymentEventsContext();
 =======
 	const { setExpressPaymentError } = useDispatch(
+=======
+	const { __internalSetExpressPaymentError } = useDispatch(
+>>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 		PAYMENT_METHOD_DATA_STORE_KEY
 	);
 
