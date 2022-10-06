@@ -5,11 +5,7 @@ import { __ } from '@wordpress/i18n';
 import Button from '@woocommerce/base-components/button';
 import { useState } from '@wordpress/element';
 import isShallowEqual from '@wordpress/is-shallow-equal';
-<<<<<<< HEAD
 import type { ShippingAddress, AddressFields } from '@woocommerce/settings';
-=======
-import type { EnteredAddress, AddressFields } from '@woocommerce/settings';
->>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 import { VALIDATION_STORE_KEY } from '@woocommerce/block-data';
 import { useDispatch, useSelect } from '@wordpress/data';
 
