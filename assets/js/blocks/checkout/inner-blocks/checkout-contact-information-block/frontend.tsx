@@ -32,7 +32,7 @@ const FrontendBlock = ( {
 	const checkoutIsProcessing = useSelect( ( select ) =>
 		select( CHECKOUT_STORE_KEY ).isProcessing()
 	);
-	const { allowCreateAccount } = useCheckoutBlockContext();
+	const { allowCreateAccount, phoneAsPrimary } = useCheckoutBlockContext();
 
 	return (
 		<FormStep

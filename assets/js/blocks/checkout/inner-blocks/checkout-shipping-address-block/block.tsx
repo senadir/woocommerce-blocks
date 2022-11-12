@@ -64,6 +64,11 @@ const Block = ( {
 	// the shipping address to the billing address if it was. This is not used on further toggles of the checkbox.
 	const [ addressesSynced, setAddressesSynced ] = useState( false );
 
+	const onChangeEmail = ( value: string ) => {
+		setEmail( value );
+		dispatchCheckoutEvent( 'set-email-address' );
+	};
+
 	// Clears data if fields are hidden.
 	useEffect( () => {
 		if ( ! phoneAsPrimary && ! showPhoneField ) {
