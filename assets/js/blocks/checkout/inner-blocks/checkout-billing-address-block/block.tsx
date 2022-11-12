@@ -8,7 +8,7 @@ import {
 	useEditorContext,
 } from '@woocommerce/base-context';
 import { __ } from '@wordpress/i18n';
-import { ValidatedTextInput } from '@woocommerce/base-components/text-input';
+import { ValidatedTextInput } from '@woocommerce/blocks-checkout';
 import { AddressForm } from '@woocommerce/base-components/cart-checkout';
 import Noninteractive from '@woocommerce/base-components/noninteractive';
 import type {
