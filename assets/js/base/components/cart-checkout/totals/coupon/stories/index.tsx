@@ -2,11 +2,7 @@
  * External dependencies
  */
 import { useArgs } from '@storybook/client-api';
-<<<<<<< HEAD
 import type { Story, Meta } from '@storybook/react';
-=======
-import { Story, Meta } from '@storybook/react';
->>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 import { INTERACTION_TIMEOUT } from '@woocommerce/storybook-controls';
 import { useDispatch } from '@wordpress/data';
 import { VALIDATION_STORE_KEY } from '@woocommerce/block-data';

@@ -62,10 +62,6 @@ const ValidatedTextInput = ( {
 		typeof id !== 'undefined' ? id : 'textinput-' + instanceId;
 	const errorIdString = errorId !== undefined ? errorId : textInputId;
 
-<<<<<<< HEAD:packages/checkout/components/text-input/validated-text-input.tsx
-<<<<<<< HEAD:packages/checkout/components/text-input/validated-text-input.tsx
-=======
->>>>>>> 257114e23 (Refactor `getValidationError` and `getValidationErrorId` selectors in `wc/store/validation` data store (#7146)):assets/js/base/components/text-input/validated-text-input.tsx
 	const { validationError, validationErrorId } = useSelect( ( select ) => {
 		const store = select( VALIDATION_STORE_KEY );
 		return {
@@ -73,20 +69,6 @@ const ValidatedTextInput = ( {
 			validationErrorId: store.getValidationErrorId( errorIdString ),
 		};
 	} );
-<<<<<<< HEAD:packages/checkout/components/text-input/validated-text-input.tsx
-=======
-	const { getValidationError, getValidationErrorId } = useSelect(
-		( select ) => {
-			const store = select( VALIDATION_STORE_KEY );
-			return {
-				getValidationError: store.getValidationError(),
-				getValidationErrorId: store.getValidationErrorId(),
-			};
-		}
-	);
->>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402)):assets/js/base/components/text-input/validated-text-input.tsx
-=======
->>>>>>> 257114e23 (Refactor `getValidationError` and `getValidationErrorId` selectors in `wc/store/validation` data store (#7146)):assets/js/base/components/text-input/validated-text-input.tsx
 
 	const validateInput = useCallback(
 		( errorsHidden = true ) => {
@@ -151,8 +133,6 @@ const ValidatedTextInput = ( {
 		};
 	}, [ clearValidationError, errorIdString ] );
 
-<<<<<<< HEAD:packages/checkout/components/text-input/validated-text-input.tsx
-<<<<<<< HEAD:packages/checkout/components/text-input/validated-text-input.tsx
 	if (
 		isString( passedErrorMessage ) &&
 		passedErrorMessage !== '' &&
@@ -162,21 +142,6 @@ const ValidatedTextInput = ( {
 	}
 
 	const hasError = validationError?.message && ! validationError?.hidden;
-=======
-	const errorMessage = getValidationError( errorIdString );
-
-=======
->>>>>>> 257114e23 (Refactor `getValidationError` and `getValidationErrorId` selectors in `wc/store/validation` data store (#7146)):assets/js/base/components/text-input/validated-text-input.tsx
-	if ( isString( passedErrorMessage ) && passedErrorMessage !== '' ) {
-		validationError.message = passedErrorMessage;
-	}
-
-<<<<<<< HEAD:packages/checkout/components/text-input/validated-text-input.tsx
-	const hasError = errorMessage?.message && ! errorMessage?.hidden;
->>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402)):assets/js/base/components/text-input/validated-text-input.tsx
-=======
-	const hasError = validationError?.message && ! validationError?.hidden;
->>>>>>> 257114e23 (Refactor `getValidationError` and `getValidationErrorId` selectors in `wc/store/validation` data store (#7146)):assets/js/base/components/text-input/validated-text-input.tsx
 	const describedBy =
 		showError && hasError && validationErrorId
 			? validationErrorId

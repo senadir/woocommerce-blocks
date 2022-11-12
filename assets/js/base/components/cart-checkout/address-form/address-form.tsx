@@ -78,6 +78,7 @@ interface AddressFormProps {
 	type?: AddressType;
 	// Values for fields.
 	values: ShippingAddress;
+	children: JSX.Element[];
 }
 
 /**
@@ -95,36 +96,13 @@ const AddressForm = ( {
 	values,
 	children,
 }: AddressFormProps ): JSX.Element => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 257114e23 (Refactor `getValidationError` and `getValidationErrorId` selectors in `wc/store/validation` data store (#7146))
 	const validationErrorId = 'shipping-missing-country';
 	const { setValidationErrors, clearValidationError } =
 		useDispatch( VALIDATION_STORE_KEY );
 
 	const countryValidationError = useSelect( ( select ) => {
-<<<<<<< HEAD
 		const store = select( VALIDATION_STORE_KEY );
 		return store.getValidationError( validationErrorId );
-=======
-	const { setValidationErrors, clearValidationError } = useDispatch(
-		VALIDATION_STORE_KEY
-	);
-=======
-	const { setValidationErrors, clearValidationError } =
-		useDispatch( VALIDATION_STORE_KEY );
->>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
-
-	const getValidationError = useSelect( ( select ) => {
-		const store = select( VALIDATION_STORE_KEY );
-		return store.getValidationError();
->>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
-=======
-		const store = select( VALIDATION_STORE_KEY );
-		return store.getValidationError( validationErrorId );
->>>>>>> 257114e23 (Refactor `getValidationError` and `getValidationErrorId` selectors in `wc/store/validation` data store (#7146))
 	} );
 
 	const currentFields = useShallowEqual( fields );

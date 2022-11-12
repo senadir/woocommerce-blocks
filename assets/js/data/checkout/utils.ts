@@ -10,22 +10,12 @@ import type { createErrorNotice as originalCreateErrorNotice } from '@wordpress/
 /**
  * Internal dependencies
  */
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 import {
 	isErrorResponse,
 	isFailResponse,
 	isSuccessResponse,
 	shouldRetry,
 } from '../../base/context/event-emit';
-<<<<<<< HEAD
-=======
-import { useEmitResponse } from '../../base/context/hooks/use-emit-response';
->>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
-=======
->>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 import {
 	CheckoutAndPaymentNotices,
 	CheckoutAfterProcessingWithErrorEventData,
@@ -33,23 +23,6 @@ import {
 import { DispatchFromMap } from '../mapped-types';
 import * as actions from './actions';
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-const {
-	isErrorResponse,
-	isFailResponse,
-	isSuccessResponse,
-	shouldRetry,
-} = useEmitResponse(); // eslint-disable-line react-hooks/rules-of-hooks
-
-// TODO: `useEmitResponse` is not a react hook, it just exposes some functions as
-// properties of an object. Refactor this to not be a hook, we could simply import
-// those functions where needed
-
->>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
-=======
->>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 /**
  * Based on the given observers, create Error Notices where necessary
  * and return the error response of the last registered observer
@@ -107,21 +80,9 @@ export const runCheckoutAfterProcessingWithErrorObservers = ( {
 	if ( errorResponse !== null ) {
 		// irrecoverable error so set complete
 		if ( ! shouldRetry( errorResponse ) ) {
-<<<<<<< HEAD
-<<<<<<< HEAD
 			dispatch.__internalSetComplete( errorResponse );
 		} else {
 			dispatch.__internalSetIdle();
-=======
-			dispatch.setComplete( errorResponse );
-		} else {
-			dispatch.setIdle();
->>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
-=======
-			dispatch.__internalSetComplete( errorResponse );
-		} else {
-			dispatch.__internalSetIdle();
->>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 		}
 	} else {
 		const hasErrorNotices =
@@ -149,15 +110,7 @@ export const runCheckoutAfterProcessingWithErrorObservers = ( {
 			} );
 		}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 		dispatch.__internalSetIdle();
-=======
-		dispatch.setIdle();
->>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
-=======
-		dispatch.__internalSetIdle();
->>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 	}
 };
 
@@ -190,15 +143,7 @@ export const runCheckoutAfterProcessingWithSuccessObservers = ( {
 	} );
 
 	if ( successResponse && ! errorResponse ) {
-<<<<<<< HEAD
-<<<<<<< HEAD
 		dispatch.__internalSetComplete( successResponse );
-=======
-		dispatch.setComplete( successResponse );
->>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
-=======
-		dispatch.__internalSetComplete( successResponse );
->>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 	} else if ( isObject( errorResponse ) ) {
 		if ( errorResponse.message && isString( errorResponse.message ) ) {
 			const errorOptions =
@@ -211,40 +156,16 @@ export const runCheckoutAfterProcessingWithSuccessObservers = ( {
 			createErrorNotice( errorResponse.message, errorOptions );
 		}
 		if ( ! shouldRetry( errorResponse ) ) {
-<<<<<<< HEAD
-<<<<<<< HEAD
 			dispatch.__internalSetComplete( errorResponse );
-=======
-			dispatch.setComplete( errorResponse );
->>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
-=======
-			dispatch.__internalSetComplete( errorResponse );
->>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 		} else {
 			// this will set an error which will end up
 			// triggering the onCheckoutAfterProcessingWithError emitter.
 			// and then setting checkout to IDLE state.
-<<<<<<< HEAD
-<<<<<<< HEAD
 			dispatch.__internalSetHasError( true );
 		}
 	} else {
 		// nothing hooked in had any response type so let's just consider successful.
 		dispatch.__internalSetComplete();
-=======
-			dispatch.setHasError( true );
-		}
-	} else {
-		// nothing hooked in had any response type so let's just consider successful.
-		dispatch.setComplete();
->>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
-=======
-			dispatch.__internalSetHasError( true );
-		}
-	} else {
-		// nothing hooked in had any response type so let's just consider successful.
-		dispatch.__internalSetComplete();
->>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
 	}
 };
 
@@ -272,14 +193,8 @@ export const getPaymentResultFromCheckoutResponse = (
 		) {
 			response.payment_result.payment_details.forEach(
 				( { key, value }: { key: string; value: string } ) => {
-<<<<<<< HEAD
 					paymentResult.paymentDetails[ key ] =
 						decodeEntities( value );
-=======
-					paymentResult.paymentDetails[ key ] = decodeEntities(
-						value
-					);
->>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 				}
 			);
 		}

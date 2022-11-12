@@ -78,19 +78,9 @@ const usePaymentMethodState = (
 		{}
 	);
 
-		return {
-			paymentMethodsInitialized: store.paymentMethodsInitialized(),
-			expressPaymentMethodsInitialized:
-				store.expressPaymentMethodsInitialized(),
-			availablePaymentMethods: store.getAvailablePaymentMethods(),
-			availableExpressPaymentMethods:
-				store.getAvailableExpressPaymentMethods(),
-		};
-	} );
-
-	const currentPaymentMethods = useShallowEqual( availablePaymentMethods );
+	const currentPaymentMethods = useShallowEqual( paymentMethods );
 	const currentExpressPaymentMethods = useShallowEqual(
-		availableExpressPaymentMethods
+		expressPaymentMethods
 	);
 
 	return {

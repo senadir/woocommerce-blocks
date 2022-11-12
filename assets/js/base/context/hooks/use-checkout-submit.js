@@ -10,13 +10,6 @@ import { __experimentalApplyCheckoutFilter } from '@woocommerce/blocks-checkout'
  * Internal dependencies
  */
 import { useCheckoutEventsContext } from '../providers';
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import { usePaymentMethodDataContext } from '../providers/cart-checkout/payment-methods';
->>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
-=======
->>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 import { usePaymentMethods } from './payment-methods/use-payment-methods';
 
 /**
@@ -42,24 +35,10 @@ export const useCheckoutSubmit = () => {
 			hasError: store.hasError(),
 		};
 	} );
-<<<<<<< HEAD
 	const { activePaymentMethod, isExpressPaymentMethodActive } = useSelect(
 		( select ) => {
 			const store = select( PAYMENT_STORE_KEY );
-=======
-	const { currentStatus: paymentStatus, activePaymentMethod } = useSelect(
-		( select ) => {
-			const store = select( PAYMENT_METHOD_DATA_STORE_KEY );
 
-			return {
-				currentStatus: store.getCurrentStatus(),
-				activePaymentMethod: store.getActivePaymentMethod(),
-			};
-		}
-	);
->>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
-
-<<<<<<< HEAD
 			return {
 				activePaymentMethod: store.getActivePaymentMethod(),
 				isExpressPaymentMethodActive:
@@ -68,8 +47,6 @@ export const useCheckoutSubmit = () => {
 		}
 	);
 
-=======
->>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 	const { onSubmit } = useCheckoutEventsContext();
 
 	const { paymentMethods = {} } = usePaymentMethods();

@@ -2,7 +2,6 @@
  * External dependencies
  */
 import PropTypes from 'prop-types';
-import { useDispatch, useSelect } from '@wordpress/data';
 import classnames from 'classnames';
 import { Notice } from 'wordpress-components';
 import { sanitizeHTML } from '@woocommerce/utils';

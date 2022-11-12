@@ -25,8 +25,6 @@ import { STORE_KEY as PAYMENT_STORE_KEY } from '../../../data/payment/constants'
  * @return {*} The rendered component.
  */
 const PaymentMethodOptions = () => {
-	const { savedPaymentMethods } = usePaymentMethodDataContext(); //TODO: Move this state from the context file
-
 	const {
 		activeSavedToken,
 		activePaymentMethod,

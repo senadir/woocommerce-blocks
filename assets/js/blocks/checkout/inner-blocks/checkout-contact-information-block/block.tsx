@@ -29,8 +29,7 @@ const Block = ( {
 
 	const { __internalSetShouldCreateAccount } =
 		useDispatch( CHECKOUT_STORE_KEY );
-	const { billingAddress, setEmail, setBillingPhone, setShippingPhone } =
-		useCheckoutAddress();
+	const { billingAddress, setEmail, setBillingPhone } = useCheckoutAddress();
 	const { dispatchCheckoutEvent } = useStoreEvents();
 
 	const onChangeEmail = ( value: string ) => {

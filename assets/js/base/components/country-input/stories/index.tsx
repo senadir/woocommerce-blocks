@@ -1,11 +1,7 @@
 /**
  * External dependencies
  */
-<<<<<<< HEAD
 import type { Story, Meta } from '@storybook/react';
-=======
-import { Story, Meta } from '@storybook/react';
->>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 import { useDispatch } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
 import { VALIDATION_STORE_KEY } from '@woocommerce/block-data';
@@ -40,14 +36,8 @@ const Template: Story< CountryInputWithCountriesProps > = ( args ) => {
 	const [ selectedCountry, selectCountry ] = useState< CountryCode | '' >(
 		''
 	);
-<<<<<<< HEAD
 	const { clearValidationError, showValidationError } =
 		useDispatch( VALIDATION_STORE_KEY );
-=======
-	const { clearValidationError, showValidationError } = useDispatch(
-		VALIDATION_STORE_KEY
-	);
->>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 
 	useEffect( () => {
 		showValidationError( 'country' );

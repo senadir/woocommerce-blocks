@@ -10,42 +10,18 @@ import { getSetting } from '@woocommerce/settings';
 import deprecated from '@wordpress/deprecated';
 import LoadingMask from '@woocommerce/base-components/loading-mask';
 import type { PaymentMethodInterface } from '@woocommerce/types';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { useSelect, useDispatch } from '@wordpress/data';
 import { CHECKOUT_STORE_KEY, PAYMENT_STORE_KEY } from '@woocommerce/block-data';
 import { ValidationInputError } from '@woocommerce/blocks-checkout';
-=======
-import { useSelect } from '@wordpress/data';
-import { CHECKOUT_STORE_KEY } from '@woocommerce/block-data';
-=======
-import { useSelect, useDispatch } from '@wordpress/data';
-import {
-	CHECKOUT_STORE_KEY,
-	PAYMENT_METHOD_DATA_STORE_KEY,
-} from '@woocommerce/block-data';
->>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
-import { ValidationInputError } from '@woocommerce/base-components/validation-input-error';
->>>>>>> 0cfb0ee6d (Convert validation context to data store (#6402))
 
 /**
  * Internal dependencies
  */
 import { useStoreCart } from '../cart/use-store-cart';
 import { useStoreCartCoupons } from '../cart/use-store-cart-coupons';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { noticeContexts, responseTypes } from '../../event-emit';
 import { useCheckoutEventsContext } from '../../providers/cart-checkout/checkout-events';
 import { usePaymentEventsContext } from '../../providers/cart-checkout/payment-events';
-=======
-import { useEmitResponse } from '../use-emit-response';
-=======
-import { noticeContexts, responseTypes } from '../../event-emit';
->>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
-import { useCheckoutEventsContext } from '../../providers/cart-checkout/checkout-events';
-import { usePaymentMethodDataContext } from '../../providers/cart-checkout/payment-methods';
->>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
 import { useShippingDataContext } from '../../providers/cart-checkout/shipping';
 import { useCustomerDataContext } from '../../providers/cart-checkout/customer';
 import { prepareTotalItems } from './utils';
@@ -62,28 +38,6 @@ export const usePaymentMethodInterface = (): PaymentMethodInterface => {
 		onCheckoutAfterProcessingWithError,
 		onSubmit,
 	} = useCheckoutEventsContext();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-	const {
-		isCalculating,
-		isComplete,
-		isIdle,
-		isProcessing,
-		customerId,
-	} = useSelect( ( select ) => {
-		const store = select( CHECKOUT_STORE_KEY );
-		return {
-			isComplete: store.isComplete(),
-			isIdle: store.isIdle(),
-			isProcessing: store.isProcessing(),
-			customerId: store.getCustomerId(),
-			isCalculating: store.isCalculating(),
-		};
-	} );
->>>>>>> 7e0f79e5a (Move checkout state code into thunks and rename `CheckoutState` context to `CheckoutEvents` (#6455))
-=======
->>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 
 	const { isCalculating, isComplete, isIdle, isProcessing, customerId } =
 		useSelect( ( select ) => {
@@ -98,11 +52,7 @@ export const usePaymentMethodInterface = (): PaymentMethodInterface => {
 		} );
 	const { paymentStatus, activePaymentMethod, shouldSavePayment } = useSelect(
 		( select ) => {
-<<<<<<< HEAD
 			const store = select( PAYMENT_STORE_KEY );
-=======
-			const store = select( PAYMENT_METHOD_DATA_STORE_KEY );
->>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 
 			return {
 				// The paymentStatus is exposed to third parties via the payment method interface so the API must not be changed
@@ -122,22 +72,10 @@ export const usePaymentMethodInterface = (): PaymentMethodInterface => {
 		}
 	);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 	const { __internalSetExpressPaymentError } =
 		useDispatch( PAYMENT_STORE_KEY );
 
 	const { onPaymentProcessing } = usePaymentEventsContext();
-=======
-	const { setExpressPaymentError } = useDispatch(
-=======
-	const { __internalSetExpressPaymentError } = useDispatch(
->>>>>>> 978fcdb6b (Prefix all actions in the checkout and payment-method stores with `__internal` (#7266))
-		PAYMENT_METHOD_DATA_STORE_KEY
-	);
-
-	const { onPaymentProcessing } = usePaymentMethodDataContext();
->>>>>>> 4ff656e4c (Feature: Data Store Migration - Payments (#6619))
 	const {
 		shippingErrorStatus,
 		shippingErrorTypes,
