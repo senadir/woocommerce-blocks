@@ -19,6 +19,7 @@ import {
 	AdditionalFieldsContent,
 } from '../../form-step';
 import Block from './block';
+import { useCheckoutBlockContext } from '../../context';
 
 export const Edit = ( {
 	attributes,
@@ -32,6 +33,7 @@ export const Edit = ( {
 	};
 	setAttributes: ( attributes: Record< string, unknown > ) => void;
 } ): JSX.Element => {
+	const { phoneAsPrimary } = useCheckoutBlockContext();
 	return (
 		<FormStepBlock
 			attributes={ attributes }
@@ -63,7 +65,7 @@ export const Edit = ( {
 				<CartCheckoutFeedbackPrompt />
 			</InspectorControls>
 			<Noninteractive>
-				<Block />
+				<Block phoneAsPrimary={ phoneAsPrimary } />
 			</Noninteractive>
 			<AdditionalFields block={ innerBlockAreas.CONTACT_INFORMATION } />
 		</FormStepBlock>

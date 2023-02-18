@@ -41,6 +41,9 @@ const FrontendBlock = ( {
 		showApartmentField,
 		showCompanyField,
 		showPhoneField,
+		phoneAsPrimary,
+		showEmailField,
+		requireEmailField,
 	} = useCheckoutBlockContext();
 	const { showBillingFields, forcedBillingAddress, useBillingAsShipping } =
 		useCheckoutAddress();
@@ -71,8 +74,12 @@ const FrontendBlock = ( {
 				showCompanyField={ showCompanyField }
 				showPhoneField={ showPhoneField }
 				requirePhoneField={ requirePhoneField }
-			/>
-			{ children }
+				phoneAsPrimary={ phoneAsPrimary }
+				showEmailField={ showEmailField }
+				requireEmailField={ requireEmailField }
+			>
+				{ children }
+			</Block>
 		</FormStep>
 	);
 };

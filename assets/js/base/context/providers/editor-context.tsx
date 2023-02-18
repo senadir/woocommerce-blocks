@@ -39,7 +39,7 @@ export const EditorProvider = ( {
 	previewData = {},
 	currentView = '',
 }: {
-	children: React.ReactChildren;
+	children: React.ReactNode;
 	currentPostId?: number | undefined;
 	previewData?: Record< string, unknown > | undefined;
 	currentView?: string | undefined;

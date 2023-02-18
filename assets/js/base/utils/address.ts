@@ -55,6 +55,32 @@ export const pluckAddress = ( {
 	postcode: postcode ? postcode.replace( ' ', '' ).toUpperCase() : '',
 } );
 
+const PHONE_REGEXP =
+	/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/i;
+
+/**
+ * Determines whether the given string looks like a phone number.
+ *
+ * @param {string} phone The string to scrutinise.
+ *
+ * @return {boolean} Whether or not it looks like a phone number.
+ */
+function isPhone( phone: string ) {
+	return PHONE_REGEXP.test( phone );
+}
+
+/**
+ * pluckPhone takes a full address object and returns only the phone number, if set and valid. Otherwise returns an empty string.
+ *
+ * @param {Object} address       An object containing all address information
+ * @param {string} address.phone The email address.
+ * @return {string} The email address.
+ */
+export const pluckPhone = ( {
+	phone = '',
+}: CartResponseBillingAddress ): string =>
+	isPhone( phone ) ? phone.trim() : '';
+
 /**
  * pluckEmail takes a full address object and returns only the email address, if set and valid. Otherwise returns an empty string.
  *

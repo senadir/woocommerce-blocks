@@ -11,6 +11,9 @@ export interface Attributes extends Record< string, boolean | number > {
 	showPhoneField: boolean;
 	requireCompanyField: boolean;
 	requirePhoneField: boolean;
+	phoneAsPrimary: boolean;
+	showEmailField: boolean;
+	requireEmailField: boolean;
 	// Deprecated.
 	showOrderNotes: boolean;
 	showPolicyLinks: boolean;

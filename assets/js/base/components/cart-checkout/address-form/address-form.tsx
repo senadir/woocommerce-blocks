@@ -76,6 +76,7 @@ interface AddressFormProps {
 	type?: AddressType;
 	// Values for fields.
 	values: ShippingAddress;
+	children: React.ReactNode;
 }
 
 /**
@@ -91,6 +92,7 @@ const AddressForm = ( {
 	onChange,
 	type = 'shipping',
 	values,
+	children,
 }: AddressFormProps ): JSX.Element => {
 	const validationErrorId = 'shipping_country';
 	const { setValidationErrors, clearValidationError } =
@@ -237,6 +239,7 @@ const AddressForm = ( {
 					/>
 				);
 			} ) }
+			{ children }
 		</div>
 	);
 };

@@ -71,6 +71,14 @@ const isAddressDirty = < T extends CartBillingAddress | CartShippingAddress >(
 		return true;
 	}
 
+	if (
+		isBillingAddress( address ) &&
+		pluckPhone( address ) !==
+			pluckPhone( previousAddress as CartBillingAddress )
+	) {
+		return true;
+	}
+
 	const addressMatches = isShallowEqual(
 		normalizeAddress( previousAddress ),
 		normalizeAddress( address )

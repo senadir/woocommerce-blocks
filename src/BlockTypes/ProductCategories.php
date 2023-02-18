@@ -226,32 +226,13 @@ class ProductCategories extends AbstractDynamicBlock {
 				>
 					' . esc_html__( 'Select a category', 'woo-gutenberg-products-block' ) . '
 				</label>
-				<select aria-label="' . esc_attr( $aria_label ) . '" id="' . esc_attr( $uid ) . '-select">
+				<select aria-label="' . esc_attr( $aria_label ) . '" id="' . esc_attr( $uid ) . '-select" onchange=" document.location.href = this.value;">
 					<option value="false" hidden>
 						' . esc_html__( 'Select a category', 'woo-gutenberg-products-block' ) . '
 					</option>
 					' . $this->renderDropdownOptions( $categories, $attributes, $uid ) . '
 				</select>
 			</div>
-			<button
-				type="button"
-				class="wc-block-product-categories__button"
-				aria-label="' . esc_html__( 'Go to category', 'woo-gutenberg-products-block' ) . '"
-				onclick="const url = document.getElementById( \'' . esc_attr( $uid ) . '-select\' ).value; if ( \'false\' !== url ) document.location.href = url;"
-			>
-				<svg
-					aria-hidden="true"
-					role="img"
-					focusable="false"
-					class="dashicon dashicons-arrow-right-alt2"
-					xmlns="http://www.w3.org/2000/svg"
-					width="20"
-					height="20"
-					viewBox="0 0 20 20"
-				>
-					<path d="M6 15l5-5-5-5 1-2 7 7-7 7z" />
-				</svg>
-			</button>
 		';
 		return $output;
 	}

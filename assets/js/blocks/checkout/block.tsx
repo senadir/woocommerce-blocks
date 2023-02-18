@@ -69,6 +69,9 @@ const Checkout = ( {
 		showApartmentField,
 		showPhoneField,
 		requirePhoneField,
+		phoneAsPrimary,
+		showEmailField,
+		requireEmailField,
 	} = attributes;
 
 	if ( ! cartIsLoading && cartItems.length === 0 ) {
@@ -100,6 +103,9 @@ const Checkout = ( {
 					showApartmentField,
 					showPhoneField,
 					requirePhoneField,
+					phoneAsPrimary,
+					showEmailField,
+					requireEmailField,
 				} as Attributes
 			}
 		>
