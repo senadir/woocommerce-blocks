@@ -60,7 +60,10 @@ const Block = ( {
 
 	const submitContainerContents = (
 		<Button
-			className="wc-block-cart__submit-button"
+			className={ classnames(
+				'wc-block-cart__submit-button',
+				className
+			) }
 			href={ link || CHECKOUT_URL }
 			disabled={ isCalculating }
 			onClick={ () => setShowSpinner( true ) }
@@ -71,7 +74,7 @@ const Block = ( {
 	);
 
 	return (
-		<div className={ classnames( 'wc-block-cart__submit', className ) }>
+		<div className="wc-block-cart__submit">
 			{ positionReferenceElement }
 			{ /* The non-sticky container must always be visible because it gives height to its parent, which is required to calculate when it becomes visible in the viewport. */ }
 			<div className="wc-block-cart__submit-container">

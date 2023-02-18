@@ -17,6 +17,9 @@ export type CheckoutBlockContextProps = {
 	showReturnToCart: boolean;
 	cartPageId: number;
 	showRateAfterTaxName: boolean;
+	phoneAsPrimary: boolean;
+	showEmailField: boolean;
+	requireEmailField: boolean;
 };
 
 export type CheckoutBlockControlsContextProps = {
@@ -35,6 +38,9 @@ export const CheckoutBlockContext: React.Context< CheckoutBlockContextProps > =
 		showReturnToCart: true,
 		cartPageId: 0,
 		showRateAfterTaxName: false,
+		phoneAsPrimary: false,
+		showEmailField: true,
+		requireEmailField: true,
 	} );
 
 export const CheckoutBlockControlsContext: React.Context< CheckoutBlockControlsContextProps > =

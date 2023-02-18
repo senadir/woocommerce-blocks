@@ -20,8 +20,13 @@ import { isEmail } from '@wordpress/url';
 /**
  * Internal dependencies
  */
+import PhoneNumber from '../../phone-number';
 
-const Block = (): JSX.Element => {
+const Block = ( {
+	phoneAsPrimary,
+}: {
+	phoneAsPrimary: boolean;
+} ): JSX.Element => {
 	const { customerId, shouldCreateAccount } = useSelect( ( select ) => {
 		const store = select( CHECKOUT_STORE_KEY );
 		return {
@@ -32,7 +37,8 @@ const Block = (): JSX.Element => {
 
 	const { __internalSetShouldCreateAccount } =
 		useDispatch( CHECKOUT_STORE_KEY );
-	const { billingAddress, setEmail } = useCheckoutAddress();
+	const { billingAddress, setEmail, setBillingPhone, setShippingPhone } =
+		useCheckoutAddress();
 	const { dispatchCheckoutEvent } = useStoreEvents();
 
 	const onChangeEmail = ( value: string ) => {
@@ -61,28 +67,50 @@ const Block = (): JSX.Element => {
 			<StoreNoticesContainer
 				context={ noticeContexts.CONTACT_INFORMATION }
 			/>
-			<ValidatedTextInput
-				id="email"
-				type="email"
-				autoComplete="email"
-				errorId={ 'billing_email' }
-				label={ __( 'Email address', 'woo-gutenberg-products-block' ) }
-				value={ billingAddress.email }
-				required={ true }
-				onChange={ onChangeEmail }
-				customValidation={ ( inputObject: HTMLInputElement ) => {
-					if ( ! isEmail( inputObject.value ) ) {
-						inputObject.setCustomValidity(
-							__(
-								'Please enter a valid email address',
-								'woo-gutenberg-products-block'
-							)
-						);
-						return false;
-					}
-					return true;
-				} }
-			/>
+			{ phoneAsPrimary ? (
+				<PhoneNumber
+					id={ 'billing-phone' }
+					errorId={ 'billing_phone' }
+					isRequired={ true }
+					value={ billingAddress.phone }
+					onChange={ ( value ) => {
+						setShippingPhone( value );
+						dispatchCheckoutEvent( 'set-phone-number', {
+							step: 'shipping',
+						} );
+						setBillingPhone( value );
+						dispatchCheckoutEvent( 'set-phone-number', {
+							step: 'billing',
+						} );
+					} }
+				/>
+			) : (
+				<ValidatedTextInput
+					id="email"
+					type="email"
+					autoComplete="email"
+					errorId={ 'billing_email' }
+					label={ __(
+						'Email address',
+						'woo-gutenberg-products-block'
+					) }
+					value={ billingAddress.email }
+					required={ true }
+					onChange={ onChangeEmail }
+					customValidation={ ( inputObject: HTMLInputElement ) => {
+						if ( ! isEmail( inputObject.value ) ) {
+							inputObject.setCustomValidity(
+								__(
+									'Please enter a valid email address',
+									'woo-gutenberg-products-block'
+								)
+							);
+							return false;
+						}
+						return true;
+					} }
+				/>
+			) }
 			{ createAccountUI }
 		</>
 	);

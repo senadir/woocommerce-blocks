@@ -1,7 +1,6 @@
 /**
  * External dependencies
  */
-import classnames from 'classnames';
 import { getSetting } from '@woocommerce/settings';
 import {
 	PlaceOrderButton,
@@ -23,7 +22,7 @@ import { defaultPlaceOrderButtonLabel } from './constants';
 const Block = ( {
 	cartPageId,
 	showReturnToCart,
-	className,
+	className = '',
 	placeOrderButtonLabel,
 }: {
 	cartPageId: number;
@@ -41,9 +40,7 @@ const Block = ( {
 	} );
 
 	return (
-		<div
-			className={ classnames( 'wc-block-checkout__actions', className ) }
-		>
+		<div className="wc-block-checkout__actions">
 			<StoreNoticesContainer
 				context={ noticeContexts.CHECKOUT_ACTIONS }
 			/>
@@ -53,7 +50,7 @@ const Block = ( {
 						link={ getSetting( 'page-' + cartPageId, false ) }
 					/>
 				) }
-				<PlaceOrderButton label={ label } />
+				<PlaceOrderButton label={ label } className={ className } />
 			</div>
 		</div>
 	);
